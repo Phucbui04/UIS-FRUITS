@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>UIS FRUITS</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <!-- Slick Slider CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+</head>
+
+<body>
+    <header class="container-fluid p-0">
+        <!-- Top Information Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-info">
+                    <div class="contact-info d-none d-md-flex">
+                        <span><i class='fa fa-phone'></i> Hotline: 0123456789</span>
+                        <span><i class="fa-solid fa-envelope"></i> uisfruits@gmail.com</span>
+                    </div>
+                    <ul class="auth-links d-flex gap-2 mb-0 list-unstyled">
+                        <li><a href="#">Đăng nhập</a></li>
+                        <li class="auth-separator">|</li>
+                        <li><a href="#">Đăng ký</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header Section -->
+        <div class="main-header">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <!-- Offcanvas Sidebar -->
+                    <div class="offcanvas-sw d-md-none">
+                        <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+
+                    <!-- Logo Section -->
+                    <div class="logo col-md-2">
+                        <a href="#" class="text-decoration-none">
+                            <h2 class="m-0">UIS <span>Fruits</span></h2>
+                        </a>
+                    </div>
+
+                    <!-- Search Bar Section (desktop view) -->
+                    <div class="search-bar col-md-4 d-none d-md-flex">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm">
+                        <button class="btn btn-green"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+
+                    <!-- Navigation Menu (desktop view) -->
+                    <ul class="nav-menu col-md-5 d-none d-md-flex list-unstyled mb-0 gap-4">
+                        <li class="nav-item"><a href="index.html">Trang chủ</a></li>
+                        <li class="nav-item"><a href="#">Giới thiệu</a></li>
+                        <li class="nav-item"><a href="shop.html">Sản phẩm</a></li>
+                        <li class="nav-item"><a href="#">Tin tức</a></li>
+                        <li class="nav-item"><a href="#">Liên hệ</a></li>
+                    </ul>
+
+                    <!-- Search Bar Section (mobile view) -->
+                    <div class="search-bar-mobile d-md-none">
+                        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+
+                    <!-- Cart Section -->
+                    <div class="cart col-md-1">
+                        <!-- Cart Icon -->
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
+                                style="fill: rgba(0, 0, 0, 1);">
+                                <path
+                                    d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z">
+                                </path>
+                                <circle cx="10.5" cy="19.5" r="1.5"></circle>
+                                <circle cx="16.5" cy="19.5" r="1.5"></circle>
+                            </svg>
+                            <span class="cart-count badge bg-danger translate-middle">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <main class="main-content">
+        <div class="checkout-container">
+            <div class="container bg-white p-4">
+                <div class="row">
+                    <div class="checkout-left col-md-7 p-3 border-r">
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <h2 class="info-title">Thông tin nhận hàng</h2>
+                                <form action="#">
+                                    <input type="email" placeholder="Email">
+                                    <input type="text" placeholder="Họ và tên">
+                                    <input type="text" placeholder="Số điện thoại">
+                                    <input type="text" placeholder="Địa chỉ">
+                                    <textarea placeholder="Ghi chú" rows="4"></textarea>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <h2 class="shipping-title">Vận chuyển</h2>
+                                <div class="form-check">
+                                    <div class="form-check-l">
+                                        <input type="radio" class="form-check-input" id="shipping-checkbox">
+                                        <label for="shipping-checkbox" class="form-check-label">Giao hàng tận nơi
+                                        </label>
+                                    </div>
+                                    <span class="form-check-r">$30</span>
+                                </div>
+
+                                <h2 class="payment-title mt-4">Thanh toán</h2>
+                                <div class="form-check">
+                                    <div class="form-check-l">
+                                        <input type="radio" class="form-check-input" id="shipping-checkbox">
+                                        <label for="shipping-checkbox" class="form-check-label">Thanh toán khi nhận hàng
+                                        </label>
+                                    </div>
+                                    <span class="form-check-r"><i class="fa-regular fa-money-bill-1"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-right col-md-5 px-4">
+                        <h2 class="sidebar-title">Đơn hàng (1 sản phẩm)</h2>
+                        <div class="info-order-product">
+                            <img src="img/product-1.1.webp" alt="Product Image" class="img-fluid">
+                            <span class="ml-3 qty-check">1</span>
+                            <span class="ml-auto total">$123</span>
+                        </div>
+                        <form action="#">
+                            <input type="text" placeholder="Nhập mã giảm giá">
+                            <button class="btn">Áp dụng</button>
+                        </form>
+                        <div class="order-summary">
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0">Tạm tính</p>
+                                <span>$133</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="mb-0">Phí vận chuyển</p>
+                                <span>$1</span>
+                            </div>
+                        </div>
+                        <div class="total-summary d-flex justify-content-between">
+                            <p class="mb-0">Tổng cộng</p>
+                            <span>$133</span>
+                        </div>
+                        <div class="action-buttons mt-4 d-flex justify-content-between">
+                            <a href="#" class="btn btn-outline-secondary">Quay lại giỏ hàng</a>
+                            <button class="btn">Đặt hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="container-fluid p-0">
+        <div class="container p-0">
+            <div class="row pt-5 pb-3">
+                <!-- Logo and description -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-logo">
+                        <a href="" class="text-decoration-none">
+                            <h2 class="logo-title">UIS <span>FRUITS</span></h2>
+                        </a>
+                    </div>
+                    <p class="mt-3">
+                        Cửa hàng <span class="fw-bold">uis</span> là một website cung cấp thực phẩm an toàn,
+                        nông sản sạch cho người dân.
+                    </p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt"></i> Gò vấp, Hồ Chí Minh</li>
+                        <li><i class="fas fa-phone"></i> 1900 6750</li>
+                    </ul>
+                </div>
+
+                <!-- Company Links -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Về chúng tôi</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark nav-link">Trang chủ</a></li>
+                        <li><a href="#" class="text-dark nav-link">Giới thiệu</a></li>
+                        <li><a href="#" class="text-dark nav-link">Sản phẩm</a></li>
+                        <li><a href="#" class="text-dark nav-link">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Support Links -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Hỗ trợ khách hàng</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-dark nav-link">Trang chủ</a></li>
+                        <li><a href="#" class="text-dark nav-link">Giới thiệu</a></li>
+                        <li><a href="#" class="text-dark nav-link">Sản phẩm</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Đăng ký</h5>
+                    <p>Nhận thông tin khuyến mãi</p>
+                    <form class="input-group">
+                        <input type="email" class="form-control" placeholder="Email">
+                        <button class="btn btn-success" type="submit">Đăng ký</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="copyright bg-green">
+            <div class="container text-center py-3">
+                <h4>© Bản quyền thuộc về Uis Team</h4>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Offcanvas Sidebar for Mobile Navigation -->
+    <div class="offcanvas offcanvas-start" id="offcanvas-menu">
+        <div class="offcanvas-header">
+            <h1 class="offcanvas-title">Menu</h1>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav-menu-mobile list-unstyled">
+                <li class="nav-item"><a href="#">Trang chủ</a></li>
+                <li class="nav-item"><a href="#">Giới thiệu</a></li>
+                <li class="nav-item"><a href="#">Sản phẩm</a></li>
+                <li class="nav-item"><a href="#">Tin tức</a></li>
+                <li class="nav-item"><a href="#">Liên hệ</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Slick Slider JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
