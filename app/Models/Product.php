@@ -18,6 +18,7 @@ class Product extends Model
         'discount',
         'stock',
         'description',
+        'descriptiondetail',
         'image',
     ];
 
@@ -37,5 +38,9 @@ class Product extends Model
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
     }
 }
