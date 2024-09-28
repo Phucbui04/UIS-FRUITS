@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('discount', 8, 2);  
             $table->integer('stock'); 
             $table->text('description')->nullable(); 
+            $table->text('descriptiondetail')->nullable(); 
             $table->string('image')->nullable();  
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');

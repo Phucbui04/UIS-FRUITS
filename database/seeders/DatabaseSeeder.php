@@ -14,6 +14,7 @@ use App\Models\Payment;
 use App\Models\Shipment;
 use App\Models\ProductDiscount;
 use App\Models\UserDiscount;
+use App\Models\ProductImage;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
           Payment::factory(3)->create();
           UserDiscount::factory(3)->create();
           ProductDiscount::factory(3)->create();
+          ProductImage::factory(3)->create();
 
 
         // User::factory()->create([

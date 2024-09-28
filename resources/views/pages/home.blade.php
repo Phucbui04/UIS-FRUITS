@@ -116,85 +116,19 @@
                 <h2 class="section-title">Sản phẩm bán chạy</h2>
                 <div class="product-grid">
 
+                    @foreach ($topSellingProducts as $item)
                     <div class="product-card">
-                        <div class="new-badge">New</div>
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
+                        <a href="{{ route('product.detail',$item->id) }}"><img src="{{$item->image}}" alt="Red Amaranth"></a>
+                        <h5>{{ $item->name }}</h5>
                         <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
+                            {{ $item->discount }} VND <span class="old-price">{{ $item->price }} VND</span>
                         </div>
                         <div class="add-to-cart">
                             <i class="fa-solid fa-basket-shopping"></i>
                             <span class="cart-text">Thêm giỏ hàng</span>
                         </div>
-                    </div>
-
-                    <div class="product-card">
-                        <div class="new-badge">New</div>
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="new-badge">New</div>
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="new-badge">New</div>
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="new-badge">New</div>
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="new-badge">New</div>
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
+                    </div>  
+                    @endforeach
                 </div>
                 <div class="view-all ">
                     <a class="btn" href="#">Xem tất cả <i class="fa-solid fa-chevron-right"></i></a>
@@ -213,96 +147,20 @@
                 <h2 class="section-title">Sản phẩm mới</h2>
                 <div class="product-grid ">
 
+                    @foreach ($newProducts as $item)
                     <div class="product-card">
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
+                        <div class="new-badge">New</div>
+                        <a href="{{ route('product.detail',$item->id) }}"><img src="{{$item->image}}" alt="Red Amaranth"></a>
+                        <h5>{{ $item->name }}</h5>
                         <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
+                            {{ $item->discount }} VND <span class="old-price">{{ $item->price }} VND</span>
                         </div>
                         <div class="add-to-cart">
                             <i class="fa-solid fa-basket-shopping"></i>
                             <span class="cart-text">Thêm giỏ hàng</span>
                         </div>
                     </div>
-
-                    <div class="product-card">
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
-                            alt="Red Amaranth">
-                        <h5>Red Amaranth</h5>
-                        <div class="price">
-                            $100.00 <span class="old-price">$120.00</span>
-                        </div>
-                        <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
                 <div class="view-all ">

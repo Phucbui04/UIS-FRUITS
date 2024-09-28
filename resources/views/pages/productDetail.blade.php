@@ -8,11 +8,11 @@
         <section class="breadcrumb">
             <div class="container">
                 <ul class="breadcrumb-list mb-0">
-                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Trang chủ</a></li>
                     <li class="breadcrumb-separator">/</li>
-                    <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                    <li class="breadcrumb-item"><a href="#">Chi tiết</a></li>
                     <li class="breadcrumb-separator">/</li>
-                    <li class="breadcrumb-item"><a href="#">Sản phẩm 1</a></li>
+                    <li class="breadcrumb-item"><a href="#">Sản phẩm {{ $product_detail->id }}</a></li>
                 </ul>
             </div>
         </section>
@@ -24,14 +24,14 @@
                     <div class="col-md-5">
                         <div class="product-images">
                             <div class="main-image">
-                                <img id="main-image" src="{{ asset('layouts/img/product-1.webp') }}"
+                                <img id="main-image" src="{{ asset ( $product_detail->image ) }}"
                                     alt="Product Main Image">
                             </div>
                             <div class="thumbnail-images">
-                                <img src="{{ asset('layouts/img/product-1.webp') }}" alt="Image Thumbnail"
-                                    onclick="changeImage('{{ asset('layouts/img/product-1.webp') }}')">
-                                <img src="{{ asset('layouts/img/product-1.1.webp') }}" alt="Image Thumbnail"
-                                    onclick="changeImage('{{ asset('layouts/img/product-1.1.webp') }}')">
+                                @foreach ($product_detail->images as $item)
+                                    <img src="{{ asset( $item->image ) }}" alt="Image Thumbnail"
+                                    onclick="changeImage('{{ asset( $item->image ) }}')">
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -39,17 +39,23 @@
                     <!-- Product Details Section -->
                     <div class="col-md-7">
                         <div class="product-info">
-                            <h2 class="product-title">Nho xanh Autumn Crisp Mỹ</h2>
+                            <h2 class="product-title">{{ $product_detail->name }}</h2>
                             <div class="product-status">
-                                <span class="status">SKU: <span>I00000</span></span>
+                                <span class="status">SKU: <span>{{ $sku }}</span></span>
                                 <span>|</span>
-                                <span class="status">Danh mục: <span>Trái cây</span></span>
+                                <span class="status">Danh mục: <span>{{ $product_detail->category->name }}</span></span>
                                 <span>|</span>
-                                <span class="status">Tình trạng: <span>Còn hàng</span></span>
+                                <span class="status">Tình trạng: 
+                                    @if($product_detail->stock > 0)
+                                        <span style="color: green;">Còn hàng</span>
+                                    @else
+                                        <span style="color: red;">Hết hàng</span>
+                                    @endif
+                                </span>
                             </div>
                             <div class="product-price">
                                 <div class="price">
-                                    $150.00 <span class="old-price">$120.00</span>
+                                    {{ $product_detail->discount }} VND <span class="old-price">{{ $product_detail->price }} VND</span>
                                 </div>
                             </div>
 
@@ -64,9 +70,7 @@
                             </form>
 
                             <div class="product-description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia voluptate doloremque
-                                beatae? Nesciunt reprehenderit facilis quia cumque officia eum libero laborum? At
-                                reprehenderit beatae pariatur, accusamus ad totam illo id.
+                                {{ $product_detail->description }}
                             </div>
 
                             <div class="purchase-options">
@@ -97,41 +101,7 @@
                         <div class="tab-content">
                             <div id="description" class="text-container container tab-pane active"><br>
                                 <p id="text-content">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo officia, ipsum error
-                                    praesentium doloribus
-                                    molestiae, possimus quibusdam recusandae, nostrum in voluptates libero iusto illo
-                                    mollitia consequatur
-                                    blanditiis eveniet eligendi eius.
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo officia, ipsum error
-                                    praesentium doloribus
-                                    molestiae, possimus quibusdam recusandae, nostrum in voluptates libero iusto illo
-                                    mollitia consequatur
-                                    blanditiis eveniet eligendi eius.
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo officia, ipsum error
-                                    praesentium doloribus
-                                    molestiae, possimus quibusdam recusandae, nostrum in voluptates libero iusto illo
-                                    mollitia consequatur
-                                    blanditiis eveniet eligendi eius.
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo officia, ipsum error
-                                    praesentium doloribus
-                                    molestiae, possimus quibusdam recusandae, nostrum in voluptates libero iusto illo
-                                    mollitia consequatur
-                                    blanditiis eveniet eligendi eius.
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo officia, ipsum error
-                                    praesentium doloribus
-                                    molestiae, possimus quibusdam recusandae, nostrum in voluptates libero iusto illo
-                                    mollitia consequatur
-                                    blanditiis eveniet eligendi eius.
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo officia, ipsum error
-                                    praesentium doloribus
-                                    molestiae, possimus quibusdam recusandae, nostrum in voluptates libero iusto illo
-                                    mollitia consequatur
-                                    blanditiis eveniet eligendi eius.
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo officia, ipsum error
-                                    praesentium doloribus
-                                    molestiae, possimus quibusdam recusandae, nostrum in voluptates libero iusto illo
-                                    mollitia consequatur
-                                    blanditiis eveniet eligendi eius.
+                                    {{ $product_detail->descriptiondetail }}
                                 </p>
                                 <button id="toggle-button-content">Xem thêm </button>
                             </div>
