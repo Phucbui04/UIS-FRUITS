@@ -35,11 +35,12 @@
                 </div>
 
                 <!-- Search Bar Section (desktop view) -->
+                   <form action="{{ route('product.index') }}" method="GET">
                 <div class="search-bar col-md-4 d-none d-md-flex">
-                    <input type="text" placeholder="Tìm kiếm sản phẩm">
+                    <input type="text" name="query" placeholder="Tìm kiếm sản phẩm">
                     <button class="btn btn-green"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-
+                   </form>
                 <!-- Navigation Menu (desktop view) -->
                 <ul class="nav-menu col-md-5 d-none d-md-flex list-unstyled mb-0 gap-4">
                     <li class="nav-item"><a href="index.html">Trang chủ</a></li>

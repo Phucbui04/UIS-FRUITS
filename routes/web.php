@@ -13,3 +13,4 @@ Route::get('/product/{id}', [ProductController::class, 'detail'])->name('product
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+

@@ -118,11 +118,13 @@
 
                     @foreach ($topSellingProducts as $item)
                     <div class="product-card">
-                        <a href="{{ route('product.detail',$item->id) }}"><img src="{{$item->image}}" alt="Red Amaranth"></a>
-                        <h5>{{ $item->name }}</h5>
-                        <div class="price">
-                            {{ $item->discount }} VND <span class="old-price">{{ $item->price }} VND</span>
-                        </div>
+           <a href="{{ route('product.detail', $item->id) }}">
+               <img src="{{ asset('layouts/img/product-1.webp' ) }}" alt="Red Amaranth">
+           </a>
+           <h5>{{ $item->name }}</h5>
+           <div class="price">
+               {{ $item->discount }} VND <span class="old-price">{{ $item->price }} VND</span>
+           </div>
                         <div class="add-to-cart">
                             <i class="fa-solid fa-basket-shopping"></i>
                             <span class="cart-text">Thêm giỏ hàng</span>
