@@ -22,6 +22,10 @@ class Product extends Model
         'image',
     ];
 
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
     public function giftWrappings()
     {
         return $this->hasMany(GiftWrapping::class, 'products_id');
