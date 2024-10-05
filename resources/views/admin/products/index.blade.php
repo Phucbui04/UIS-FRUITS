@@ -8,7 +8,7 @@
                     <h6>Quản lý sản phẩm của bạn</h6>
                 </div>
                 <div class="page-btn">
-                    <a href="addproduct.html" class="btn btn-added"><img src="{{ asset('admins/assets/img/icons/plus.svg') }}"
+                    <a href="addproduct.html" class="btn btn-added"><img src="{{ asset('assets/img/icons/plus.svg') }}"
                             alt="img" class="me-1">Thêm sản phẩm</a>
                 </div>
             </div>
@@ -19,28 +19,28 @@
                         <div class="search-set">
                             <div class="search-path">
                                 <a class="btn btn-filter" id="filter_search">
-                                    <img src="{{ asset('admins/assets/img/icons/filter.svg') }}" alt="img">
-                                    <span><img src="{{ asset('admins/assets/img/icons/closes.svg" alt="img') }}"></span>
+                                    <img src="{{ asset('assets/img/icons/filter.svg') }}" alt="img">
+                                    <span><img src="{{ asset('assets/img/icons/closes.svg" alt="img') }}"></span>
                                 </a>
                             </div>
                             <div class="search-input">
-                                <a class="btn btn-searchset"><img
-                                        src="{{ asset('admins/assets/img/icons/search-white.svg') }}" alt="img"></a>
+                                <a class="btn btn-searchset"><img src="{{ asset('assets/img/icons/search-white.svg') }}"
+                                        alt="img"></a>
                             </div>
                         </div>
                         <div class="wordset">
                             <ul>
                                 <li>
                                     <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf"><img
-                                            src="{{ asset('admins/assets/img/icons/pdf.svg') }}" alt="img"></a>
+                                            src="{{ asset('assets/img/icons/pdf.svg') }}" alt="img"></a>
                                 </li>
                                 <li>
                                     <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel"><img
-                                            src="{{ asset('admins/assets/img/icons/excel.svg') }}" alt="img"></a>
+                                            src="{{ asset('assets/img/icons/excel.svg') }}" alt="img"></a>
                                 </li>
                                 <li>
                                     <a data-bs-toggle="tooltip" data-bs-placement="top" title="print"><img
-                                            src="{{ asset('admins/assets/img/icons/printer.svg') }}" alt="img"></a>
+                                            src="{{ asset('assets/img/icons/printer.svg') }}" alt="img"></a>
                                 </li>
                             </ul>
                         </div>
@@ -96,7 +96,7 @@
                                         <div class="col-lg-1 col-sm-6 col-12">
                                             <div class="form-group">
                                                 <a class="btn btn-filters ms-auto"><img
-                                                        src="{{ asset('admins/assets/img/icons/search-whites.svg') }}"
+                                                        src="{{ asset('assets/img/icons/search-whites.svg') }}"
                                                         alt="img"></a>
                                             </div>
                                         </div>
@@ -137,7 +137,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product1.jpg') }}" alt="product">
+                                            <img src="{{ asset('assets/img/product/product1.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Macbook pro</a>
                                     </td>
@@ -150,13 +150,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -169,8 +169,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product2.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product2.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Orange</a>
                                     </td>
@@ -183,13 +182,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -202,8 +201,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product3.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product3.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Pineapple</a>
                                     </td>
@@ -216,13 +214,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -235,8 +233,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product4.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product4.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Strawberry</a>
                                     </td>
@@ -249,13 +246,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -268,8 +265,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product5.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product5.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Avocat</a>
                                     </td>
@@ -282,13 +278,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -301,8 +297,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product6.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product6.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Macbook Pro</a>
                                     </td>
@@ -315,13 +310,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -334,8 +329,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product7.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product7.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Apple Earpods</a>
                                     </td>
@@ -348,13 +342,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -367,8 +361,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product8.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product8.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">iPhone 11 </a>
                                     </td>
@@ -381,13 +374,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -400,8 +393,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product9.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product9.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">samsung </a>
                                     </td>
@@ -414,13 +406,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -433,8 +425,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product11.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product11.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Banana</a>
                                     </td>
@@ -447,13 +438,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>
@@ -466,8 +457,7 @@
                                     </td>
                                     <td class="productimgname">
                                         <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('admins/assets/img/product/product17.jpg') }}"
-                                                alt="product">
+                                            <img src="{{ asset('assets/img/product/product17.jpg') }}" alt="product">
                                         </a>
                                         <a href="javascript:void(0);">Limon</a>
                                     </td>
@@ -480,13 +470,13 @@
                                     <td>Admin</td>
                                     <td>
                                         <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('admins/assets/img/icons/eye.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
                                         </a>
                                         <a class="me-3" href="editproduct.html">
-                                            <img src="{{ asset('admins/assets/img/icons/edit.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
                                         <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('admins/assets/img/icons/delete.svg') }}" alt="img">
+                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
                                         </a>
                                     </td>
                                 </tr>

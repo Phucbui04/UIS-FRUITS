@@ -130,8 +130,7 @@
                                     <li>
                                         <div class="productviews">
                                             <div class="productviewsimg">
-                                                <img src="{{ asset('admins/assets/img/icons/macbook.svg') }}"
-                                                    alt="img">
+                                                <img src="{{ asset('assets/img/icons/macbook.svg') }}" alt="img">
                                             </div>
                                             <div class="productviewscontent">
                                                 <div class="productviewsname">

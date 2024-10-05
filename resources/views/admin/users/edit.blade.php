@@ -66,7 +66,7 @@
                                 <div class="image-upload">
                                     <input type="file">
                                     <div class="image-uploads">
-                                        <img src="{{ asset('admins/assets/img/icons/upload.svg') }}" alt="img">
+                                        <img src="{{ asset('assets/img/icons/upload.svg') }}" alt="img">
                                         <h4>Drag and drop a file to upload</h4>
                                     </div>
                                 </div>
@@ -78,8 +78,7 @@
                                     <li class="ps-0">
                                         <div class="productviewset">
                                             <div class="productviewsimg">
-                                                <img src="{{ asset('admins/assets/img/customer/profile2.jpg') }}"
-                                                    alt="img">
+                                                <img src="{{ asset('assets/img/customer/profile2.jpg') }}" alt="img">
                                             </div>
                                             <div class="productviewscontent">
                                                 <a href="javascript:void(0);" class="hideset"><i
