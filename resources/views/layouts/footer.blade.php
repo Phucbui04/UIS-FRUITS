@@ -1,5 +1,5 @@
 <footer class="container-fluid p-0">
-    <div class="container p-0">
+    <div class="container p-3 p-md-3 p-lg-0">
         <div class="row pt-5 pb-3">
             <!-- Logo and description -->
             <div class="col-lg-4 col-md-6 mb-4">

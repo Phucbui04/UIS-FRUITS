@@ -1,112 +1,11 @@
-
-
-
-$(document).ready(function () {
-    $('.service-stick').slick({
-        slidesToShow: 3,  // Show 3 items at a time (for desktop)
-        slidesToScroll: 1,  // Scroll one item at a time
-        arrows: true,  // Show arrows
-        prevArrow: $('#prev-service'),  // Custom Prev button
-        nextArrow: $('#next-service'),  // Custom Next button
-        infinite: false,  // Disable infinite scrolling
-        dots: false,  // Disable dots at the bottom
-        responsive: [
-            {
-                breakpoint: 1024,  // For tablets and medium screens
-                settings: {
-                    slidesToShow: 2,  // Show 2 items
-                    arrows: true,  // Keep arrows visible
-                }
-            },
-            {
-                breakpoint: 768,  // For smaller tablets
-                settings: {
-                    slidesToShow: 1,  // Show 1 item at a time
-                    arrows: true,  // Keep arrows visible
-                }
-            },
-            {
-                breakpoint: 480,  // For mobile screens
-                settings: {
-                    slidesToShow: 1,  // Show 1 item at a time
-                    arrows: true,  // Hide arrows on mobile
-                    dots: false  // Show dots for mobile
-                }
-            }
-        ]
-    });
-});
-$(document).ready(function () {
-    $('.related-stick').slick({
-        slidesToShow: 4,  // Show 3 items at a time (for desktop)
-        slidesToScroll: 1,  // Scroll one item at a time
-        arrows: true,  // Show arrows
-        prevArrow: $('#prev-service'),  // Custom Prev button
-        nextArrow: $('#next-service'),  // Custom Next button
-        infinite: false,  // Disable infinite scrolling
-        dots: false,  // Disable dots at the bottom
-        responsive: [
-            {
-                breakpoint: 1024,  // For tablets and medium screens
-                settings: {
-                    slidesToShow: 2,  // Show 2 items
-                    arrows: true,  // Keep arrows visible
-                }
-            },
-            {
-                breakpoint: 768,  // For smaller tablets
-                settings: {
-                    slidesToShow: 1,  // Show 1 item at a time
-                    arrows: true,  // Keep arrows visible
-                }
-            },
-            {
-                breakpoint: 480,  // For mobile screens
-                settings: {
-                    slidesToShow: 1,  // Show 1 item at a time
-                    arrows: true,  // Hide arrows on mobile
-                    dots: false  // Show dots for mobile
-                }
-            }
-        ]
-    });
-});
-
-$(document).ready(function () {
-    $('.product-image-thumbnail').slick({
-        slidesToShow: 4,  // Show 3 items at a time (for desktop)
-        slidesToScroll: 1,  // Scroll one item at a time
-        arrows: true,  // Show arrows
-        prevArrow: $('#prev-service'),  // Custom Prev button
-        nextArrow: $('#next-service'),  // Custom Next button
-        infinite: false,  // Disable infinite scrolling
-        dots: false,  // Disable dots at the bottom
-        responsive: [
-            {
-                breakpoint: 1024,  // For tablets and medium screens
-                settings: {
-                    slidesToShow: 2,  // Show 2 items
-                    arrows: true,  // Keep arrows visible
-                }
-            },
-            {
-                breakpoint: 768,  // For smaller tablets
-                settings: {
-                    slidesToShow: 1,  // Show 1 item at a time
-                    arrows: true,  // Keep arrows visible
-                }
-            },
-            {
-                breakpoint: 480,  // For mobile screens
-                settings: {
-                    slidesToShow: 1,  // Show 1 item at a time
-                    arrows: true,  // Hide arrows on mobile
-                    dots: false  // Show dots for mobile
-                }
-            }
-        ]
-    });
-});
+window.onscroll = function () {
+    let topBarHide = document.getElementById('topBar');
+    if (window.scrollY) {
+        topBarHide.classList.add('hidden');
+    } else {
+        topBarHide.classList.remove('hidden')
+    }
+}
 
 function changeImage(imageUrl) {
     document.getElementById('main-image').src = imageUrl;
@@ -126,6 +25,107 @@ function decreaseQuantity() {
     }
 }
 
-
-
-
+/* Stick slider */
+$(document).ready(function () {
+    $('.services').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: false,
+        infinite: false,
+        dots: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    arrows: false,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: false,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: false,
+                    dots: false
+                }
+            }
+        ]
+    });
+});
+$(document).ready(function () {
+    $('.recommended').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow: $('#prev-justforyou'),
+        nextArrow: $('#next-justforyou'),
+        infinite: false,
+        dots: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    arrows: true,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: true,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: true,
+                    dots: false
+                }
+            }
+        ]
+    });
+});
+$(document).ready(function () {
+    $('.related-stick').slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow: $('#prev-justforyou'),
+        nextArrow: $('#next-justforyou'),
+        infinite: false,
+        dots: false,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    arrows: true,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: true,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: true,
+                    dots: false
+                }
+            }
+        ]
+    });
+});
