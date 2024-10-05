@@ -9,12 +9,12 @@ class Shipment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'order_id',
         'shipment_date',
         'status',
         'tracking_number',
         'carrier',
     ];
+
     public function order()
     {
         return $this->belongsTo(Order::class);

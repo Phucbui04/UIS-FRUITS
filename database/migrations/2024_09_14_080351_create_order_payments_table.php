@@ -9,16 +9,16 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->string('payment_method');  // Tên sản phẩm
-            $table->unsignedBigInteger('order_id');  // Mã danh mục (liên kết với bảng categories)
-            $table->timestamp('payment_date');  // Số lượng tồn kho
-            $table->string('status')->nullable();  // Hình ảnh sản phẩm (có thể null)
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('order_id');
+            $table->string('payment_method');
+            $table->timestamp('payment_date');
+            $table->string('status');
             $table->timestamps();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('restrict');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 

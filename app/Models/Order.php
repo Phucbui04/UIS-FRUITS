@@ -15,9 +15,15 @@ class Order extends Model
         'status',
         'payment_method',
         'user_id',
-        'totel_amount',
-        'order_date'
+        'total_amount',
+        'order_date',
+        'discounts_id',
     ];
+
+    public function shipments()
+    {
+        return $this->hasOne(Shipment::class);
+    }
     public function user(){
         return $this->belongsTo(User::class);
     }
@@ -28,9 +34,5 @@ class Order extends Model
     public function payments()
     {
         return $this->hasMany(Payment::class);
-    }
-    public function shipment()
-    {
-        return $this->hasOne(Shipment::class);
     }
 }

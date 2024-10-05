@@ -17,10 +17,10 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            'payment_method' => $this->faker->word, 
-            'order_id' => \App\Models\Order::inRandomOrder()->first()->id, 
-            'payment_date' => $this->faker->dateTimeBetween('-1 month', 'now'), 
-            'status' => $this->faker->randomElement(['pending', 'completed', 'failed']),
+            'order_id' => \App\Models\Order::factory(),
+            'payment_method' => $this->faker->word,
+            'payment_date' => $this->faker->dateTime(),
+            'status' => $this->faker->word,
         ];
     }
 }

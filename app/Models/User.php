@@ -24,7 +24,14 @@ class User extends Authenticatable
         'address',
         'role'
     ];
-
+    public function giftWrappings()
+    {
+        return $this->hasMany(GiftWrapping::class, 'user_id');
+    }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'products_id');
+    }
     public function comments()
     {
         return $this->hasMany(Comment::class);
