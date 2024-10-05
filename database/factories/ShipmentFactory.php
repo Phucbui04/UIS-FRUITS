@@ -17,13 +17,11 @@ class ShipmentFactory extends Factory
      */
     public function definition(): array
     {
-        $orderId = Order::inRandomOrder()->first()->id;
         return [
-            'order_id' => $orderId, 
-            'shipment_date' => $this->faker->date(), 
-            'status' => $this->faker->randomElement(['pending', 'shipped', 'delivered', 'cancelled']), 
-            'tracking_number' => $this->faker->unique()->regexify('[A-Za-z0-9]{10}'), 
-            'carrier' => $this->faker->company,
+            'shipment_date' => $this->faker->dateTime(),
+            'status' => $this->faker->word,
+            'tracking_number' => $this->faker->uuid,
+            'carrier' => $this->faker->word,
         ];
     }
 }

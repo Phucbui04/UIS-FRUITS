@@ -14,13 +14,23 @@ class Product extends Model
     protected $fillable = [
         'name',
         'category_id',
+        'discount_id',
         'price',
         'discount',
         'stock',
         'description',
-        'descriptiondetail',
         'image',
     ];
+
+    public function giftWrappings()
+    {
+        return $this->hasMany(GiftWrapping::class, 'products_id');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'products_id');
+    }
 
     public function category()
     {
@@ -31,16 +41,12 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class);
     }
-    public function discounts()
+    public function discount()
     {
-        return $this->belongsToMany(Discount::class, 'product_discount');
+        return $this->belongsTo(Discount::class);
     }
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
-    }
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
     }
 }

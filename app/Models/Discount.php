@@ -15,12 +15,10 @@ class Discount extends Model
         'valid_form',
         'valid_end'
     ];
+   
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'discounts_product');
+        return $this->hasMany(Product::class);
     }
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'discounts_user');
-    }
+    
 }
