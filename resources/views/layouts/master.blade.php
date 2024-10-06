@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Uis Fruits | @yield('title')</title>
+    <title>UIS FRUITS</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" href="../">
     <link rel="stylesheet" href="{{ asset('layouts/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('layouts/css/global.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -33,14 +32,19 @@
     @include('layouts.footer')
 
 
+
     <!-- Offcanvas Sidebar for Mobile Navigation -->
     <div class="offcanvas offcanvas-start" id="offcanvas-menu">
         <div class="offcanvas-header">
-            <h1 class="offcanvas-title">Menu</h1>
+            <div class="offcanvas-title">
+                <a href="#" class="text-decoration-none">
+                    <h2 class="m-0">UIS <span>Fruits</span></h2>
+                </a>
+            </div>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
-            <ul class="nav-menu-mobile list-unstyled">
+            <ul class="menu-offcanvas list-unstyled">
                 <li class="nav-item"><a href="#">Trang chủ</a></li>
                 <li class="nav-item"><a href="#">Giới thiệu</a></li>
                 <li class="nav-item"><a href="#">Sản phẩm</a></li>
@@ -50,6 +54,20 @@
         </div>
     </div>
 
+    <div class="offcanvas offcanvas-end" id="category-shop">
+        <div class="offcanvas-header">
+            <h3 class="offcanvas-title">Danh mục sản phẩm</h3>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <ul class="category-list list-unstyled mb-0">
+            <li class="category-item"><a href="#">Khuyến mãi hot</a></li>
+            <li class="category-item"><a href="#">Trái cây & hoa</a></li>
+            <li class="category-item"><a href="#">Giỏ trái cây</a></li>
+            <li class="category-item"><a href="#">Quà tặng</a></li>
+            <li class="category-item"><a href="#">Thịt cá, trứng & hải sản</a></li>
+            <li class="category-item"><a href="#">Rau củ & nấm</a></li>
+        </ul>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -73,21 +91,12 @@
         });
     </script>
 
-    <script src="{{ asset('layouts/js/script.js') }}"></script>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{{ asset('layouts/js/main.js') }}"></script>
     <!-- Slick Slider JS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-    <script type="text/javascript" src="{{ asset('layouts/js/main.js') }}"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 
 </body>
 
