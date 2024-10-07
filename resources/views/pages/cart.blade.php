@@ -58,33 +58,51 @@
 </main>
 
 <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+    // Xóa sản phẩm khỏi giỏ hàng
     document.querySelectorAll('.delete-cart-item').forEach(btn => {
         btn.addEventListener('click', function () {
             const id = this.getAttribute('data-id');
+
             fetch(`/cart/delete/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                 }
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    // Xóa sản phẩm khỏi giao diện
                     this.closest('tr').remove();
+
+                    // Cập nhật tổng giá tiền
                     document.getElementById('totalPrice').textContent = data.totalPrice + '$';
+
+                    // Cập nhật số lượng sản phẩm trên icon giỏ hàng
+                    document.getElementById('cart-count').textContent = data.cartItemCount;
                 }
-            });
+            })
+            .catch(error => console.error('Lỗi:', error));
         });
     });
 
+    // Cập nhật số lượng sản phẩm trong giỏ hàng
     document.querySelectorAll('.update-cart').forEach(input => {
         input.addEventListener('change', function () {
             const id = this.getAttribute('data-id');
             const quantity = this.value;
+
+            if (quantity <= 0) {
+                alert('Số lượng phải lớn hơn 0');
+                return;
+            }
+
             fetch(`/cart/update/${id}`, {
                 method: 'PUT',
                 headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ quantity })
@@ -92,10 +110,18 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    // Cập nhật tổng giá tiền sau khi thay đổi số lượng
                     document.getElementById('totalPrice').textContent = data.totalPrice + '$';
+
+                    // Cập nhật số lượng sản phẩm trên icon giỏ hàng
+                    document.getElementById('cart-count').textContent = data.cartItemCount;
                 }
-            });
+            })
+            .catch(error => console.error('Lỗi:', error));
         });
     });
+
+    });
+
 </script>
 @endsection

@@ -106,6 +106,21 @@ header {
 .nav-bar .cart {
     text-align: center;
 }
+.cart-text {
+    display: inline-flex; /* Hiển thị các phần tử trong cùng một dòng */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    color: white; /* Đặt màu chữ thành trắng */
+    text-decoration: none; /* Loại bỏ đường gạch dưới */
+    transition: color 0.3s ease; /* Thêm hiệu ứng chuyển màu */
+}
+
+.cart-text:hover {
+    color: #00ff00; /* Đổi màu chữ khi di chuột (ví dụ: màu xanh) */
+}
+
+.cart-text i {
+    margin-right: 5px; /* Khoảng cách giữa icon và chữ */
+}
 
 .nav-bar .mobile-menu {
     display: none;

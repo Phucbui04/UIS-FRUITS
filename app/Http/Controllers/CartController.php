@@ -24,24 +24,26 @@ class CartController extends Controller
     {
         $product = Product::find($id);
         $cart = Session::get('cart', []);
-
+    
         if (isset($cart[$id])) {
             $cart[$id]['quantity'] += $request->quantity;
         } else {
             $cart[$id] = [
                 'name' => $product->name,
                 'price' => $product->price,
-                'image' => $product->image, 
+                'image' => $product->image,
                 'quantity' => $request->quantity
             ];
         }
-
+    
         Session::put('cart', $cart);
-
+    
+        // Tính tổng số lượng sản phẩm trong giỏ
+        $cartItemCount = array_sum(array_column($cart, 'quantity'));
+    
         return redirect()->route('cart.index')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng');
 
     }
-
     // Cập nhật số lượng giỏ hàng
     public function updateCart(Request $request, $id)
     {
