@@ -53,10 +53,10 @@
 
                  <!-- Cart Icon -->
                  <div class="cart col-lg-1">
-                     <a href="{{ route('cart.index') }}">
-                         <img src="{{ asset('layouts/img/cart-icon.svg') }}" alt="Giỏ hàng">
-                         <span class="badge bg-danger translate-middle">0</span>
-                     </a>
+                 <a href="{{ route('cart.index') }}">
+                    <img src="{{ asset('layouts/img/cart-icon.svg') }}" alt="Giỏ hàng">
+                    <span class="badge bg-danger translate-middle" id="cart-count">{{ count(Session::get('cart', [])) }}</span> <!-- Số lượng sản phẩm -->
+                </a>
 
                      <!-- Mobile & Tablet Menu -->
                      <div class="mobile-menu col-5">
