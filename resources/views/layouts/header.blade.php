@@ -51,12 +51,15 @@
                      <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
                  </ul>
 
-                 <!-- Cart Icon -->
-                 <div class="cart col-lg-1">
-                 <a href="{{ route('cart.index') }}">
-                    <img src="{{ asset('layouts/img/cart-icon.svg') }}" alt="Giỏ hàng">
-                    <span class="badge bg-danger translate-middle" id="cart-count">{{ count(Session::get('cart', [])) }}</span> <!-- Số lượng sản phẩm -->
-                </a>
+                <!-- Biểu tượng Giỏ hàng -->
+                <div class="cart col-lg-1">
+                    <a href="{{ route('cart.index') }}" class="d-flex align-items-center">
+                        <img src="{{ asset('layouts/img/cart-icon.svg') }}" alt="Giỏ hàng" class="img-fluid">
+                        <span class="badge bg-danger translate-middle" id="cart-count">{{ count(Session::get('cart', [])) }}</span> <!-- Số lượng sản phẩm -->
+                    </a>
+                </div>
+
+
 
                      <!-- Mobile & Tablet Menu -->
                      <div class="mobile-menu col-5">

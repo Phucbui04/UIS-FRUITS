@@ -12,9 +12,7 @@ class CartController extends Controller
     public function index()
     {
         $cart = Session::get('cart', []);
-        $totalPrice = array_reduce($cart, function ($carry, $item) {
-            return $carry + ($item['price'] * $item['quantity']);
-        }, 0);
+        $totalPrice = $this->calculateTotal();
 
         return view('pages.cart', compact('cart', 'totalPrice'));
     }
@@ -26,7 +24,7 @@ class CartController extends Controller
         $cart = Session::get('cart', []);
     
         if (isset($cart[$id])) {
-            $cart[$id]['quantity'] += $request->quantity;
+            $cart[$id]['quantity'] += $request->quantity; // Cập nhật số lượng sản phẩm nếu đã tồn tại
         } else {
             $cart[$id] = [
                 'name' => $product->name,
@@ -38,35 +36,57 @@ class CartController extends Controller
     
         Session::put('cart', $cart);
     
-        // Tính tổng số lượng sản phẩm trong giỏ
-        $cartItemCount = array_sum(array_column($cart, 'quantity'));
-    
         return redirect()->route('cart.index')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng');
-
     }
+
     // Cập nhật số lượng giỏ hàng
     public function updateCart(Request $request, $id)
     {
         $cart = Session::get('cart', []);
 
         if (isset($cart[$id])) {
-            $cart[$id]['quantity'] = $request->quantity;
-
-            Session::put('cart', $cart);
+            if ($request->quantity > 0) {
+                $cart[$id]['quantity'] = $request->quantity;
+                Session::put('cart', $cart);
+            } else {
+                // Nếu số lượng bằng 0, xóa sản phẩm khỏi giỏ hàng
+                unset($cart[$id]);
+                Session::put('cart', $cart);
+            }
         }
 
-        return response()->json(['success' => true, 'totalPrice' => $this->calculateTotal()]);
+        // Tính tổng tiền và số lượng sản phẩm
+        $totalPrice = $this->calculateTotal();
+        $cartItemCount = array_sum(array_column($cart, 'quantity'));
+
+        return response()->json([
+            'success' => true,
+            'totalPrice' => $totalPrice,
+            'cartItemCount' => $cartItemCount
+        ]);
     }
 
     // Xóa sản phẩm khỏi giỏ hàng
     public function delete($id)
     {
         $cart = Session::get('cart', []);
-        unset($cart[$id]);
+        
+        if (isset($cart[$id])) {
+            unset($cart[$id]); // Xóa sản phẩm khỏi giỏ hàng
+            Session::put('cart', $cart);
+        }
 
-        Session::put('cart', $cart);
+        // Tính tổng tiền và số lượng sản phẩm
+        $totalPrice = $this->calculateTotal();
+        $cartItemCount = array_sum(array_column($cart, 'quantity'));
 
-        return response()->json(['success' => true, 'message' => 'Sản phẩm đã xóa thành công', 'totalPrice' => $this->calculateTotal()]);    }
+        return response()->json([
+            'success' => true,
+            'message' => 'Sản phẩm đã xóa thành công',
+            'totalPrice' => $totalPrice,
+            'cartItemCount' => $cartItemCount
+        ]);
+    }
 
     // Tính tổng tiền
     private function calculateTotal()
