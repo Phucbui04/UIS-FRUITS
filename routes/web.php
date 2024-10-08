@@ -36,7 +36,9 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-
-
-Route::prefix('admin')->middleware('checkAdmin')->group(function () {
-
+Route::prefix('admin')->group(function () {
+    Route::get('/', DashboardController::class);
+    Route::resource('products', AdminProductController::class);
+    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('users', AdminUserController::class);
+});
