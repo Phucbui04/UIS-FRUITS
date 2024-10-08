@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
          // Sản phẩm mới nhất
-    $newProducts = Product::orderBy('created_at', 'desc')->take(10)->get();
+    $newProducts = Product::orderBy('created_at', 'desc')->take(5)->get();
 
     // Sản phẩm bán chạy nhất (dựa trên số lượng bán từ bảng order_items)
     $topSellingProducts = Product::select('products.id', 'products.name', 'products.price', 'products.image', 'products.stock','products.discount')  // Chọn cột stock
@@ -18,7 +18,7 @@ class HomeController extends Controller
     ->selectRaw('SUM(order_details.quantity) as total_sales')
     ->groupBy('products.id', 'products.name', 'products.price', 'products.image', 'products.stock','products.discount')  // Thêm stock vào GROUP BY
     ->orderBy('total_sales', 'desc')
-    ->take(10)
+    ->take(4)
     ->get();
 
 
