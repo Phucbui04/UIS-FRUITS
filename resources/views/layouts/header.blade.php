@@ -13,14 +13,28 @@
                      </li>
                  </ul>
                  <div class="auth-links nav justify-content-center align-items-center">
-                     <li class="nav-item d-flex align-items-center">
-                         <a href="#" class="nav-link">Đăng nhập</a>
-                     </li>
-                     <li class="nav-item">|</li>
-                     <li class="nav-item d-flex align-items-center">
-                         <a href="#" class="nav-link">Đăng ký </a>
-                     </li>
+                     @if (Auth::check())
+                         <li class="nav-item d-flex align-items-center">
+                             <span class="nav-link">Xin chào, {{ Auth::user()->name }}</span>
+                         </li>
+                         <li class="nav-item">|</li>
+                         <li class="nav-item d-flex align-items-center">
+                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                 @csrf
+                             </form>
+                             <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
+                         </li>
+                     @else
+                         <li class="nav-item d-flex align-items-center">
+                             <a href="{{ route('login') }}" class="nav-link">Đăng nhập</a>
+                         </li>
+                         <li class="nav-item">|</li>
+                         <li class="nav-item d-flex align-items-center">
+                             <a href="{{ route('register') }}" class="nav-link">Đăng ký</a>
+                         </li>
+                     @endif
                  </div>
+
              </div>
          </div>
      </div>
