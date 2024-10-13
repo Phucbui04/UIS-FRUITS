@@ -270,8 +270,8 @@
                                     alt="img"><span>
                                     Sản phẩm</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="productlist.html">Danh sách sản phẩm</a></li>
-                                <li><a href="addproduct.html">Thêm sản phẩm</a></li>
+                                <li><a href="{{route('admin.products.index')}}">Danh sách sản phẩm</a></li>
+                                
                             </ul>
                         </li>
                         <li class="submenu">
@@ -333,7 +333,8 @@
     <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert/sweetalerts.min.js') }}"></script>
-
+<script src="{{asset('assets/js/chart-area-demo.js')}}"></script>
+<script src="{{asset('assets/js/chart-bar-demo.js')}}"></script>
 
 </body>
 
