@@ -242,8 +242,21 @@
                             {{ $item->discount }} VND <span class="old-price">{{ $item->price }} VND</span>
                         </div>
                         <div class="add-to-cart">
-                            <i class="fa-solid fa-basket-shopping"></i>
-                            <span class="cart-text">Thêm giỏ hàng</span>
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <form action="{{ route('cart.add', ['id' => $item->id]) }}" method="post" style="display: inline;">
+                            @csrf
+                            <input type="hidden" name="product[id]" value="{{ $item->id }}">
+                            <input type="hidden" name="product[name]" value="{{ $item->name }}">
+                            <input type="hidden" name="product[image]" value="{{ $item->image }}">
+                            <input type="hidden" name="product[price]" value="{{ $item->price }}">
+                            <input type="hidden" name="quantity" value="1">
+                            <a href="#" onclick="this.closest('form').submit();" class="cart-text" style="display: inline-flex; align-items: center;">
+                                <span style="margin-left: 5px;">Thêm giỏ hàng</span>
+                            </a>
+                        </form>
+
+
+
                         </div>
                     </div>
                 @endforeach

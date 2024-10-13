@@ -13,14 +13,28 @@
                      </li>
                  </ul>
                  <div class="auth-links nav justify-content-center align-items-center">
-                     <li class="nav-item d-flex align-items-center">
-                         <a href="#" class="nav-link">Đăng nhập</a>
-                     </li>
-                     <li class="nav-item">|</li>
-                     <li class="nav-item d-flex align-items-center">
-                         <a href="#" class="nav-link">Đăng ký </a>
-                     </li>
+                     @if (Auth::check())
+                         <li class="nav-item d-flex align-items-center">
+                             <span class="nav-link">Xin chào, {{ Auth::user()->name }}</span>
+                         </li>
+                         <li class="nav-item">|</li>
+                         <li class="nav-item d-flex align-items-center">
+                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                 @csrf
+                             </form>
+                             <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
+                         </li>
+                     @else
+                         <li class="nav-item d-flex align-items-center">
+                             <a href="{{ route('login') }}" class="nav-link">Đăng nhập</a>
+                         </li>
+                         <li class="nav-item">|</li>
+                         <li class="nav-item d-flex align-items-center">
+                             <a href="{{ route('register') }}" class="nav-link">Đăng ký</a>
+                         </li>
+                     @endif
                  </div>
+
              </div>
          </div>
      </div>
@@ -51,12 +65,15 @@
                      <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
                  </ul>
 
-                 <!-- Cart Icon -->
-                 <div class="cart col-lg-1">
-                     <a href="{{ route('cart.index') }}">
-                         <img src="{{ asset('layouts/img/cart-icon.svg') }}" alt="Giỏ hàng">
-                         <span class="badge bg-danger translate-middle">0</span>
-                     </a>
+                <!-- Biểu tượng Giỏ hàng -->
+                <div class="cart col-lg-1">
+                    <a href="{{ route('cart.index') }}" class="d-flex align-items-center">
+                        <img src="{{ asset('layouts/img/cart-icon.svg') }}" alt="Giỏ hàng" class="img-fluid">
+                        <span class="badge bg-danger translate-middle" id="cart-count">{{ count(Session::get('cart', [])) }}</span> <!-- Số lượng sản phẩm -->
+                    </a>
+                </div>
+
+
 
                      <!-- Mobile & Tablet Menu -->
                      <div class="mobile-menu col-5">

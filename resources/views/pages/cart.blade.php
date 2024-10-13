@@ -2,45 +2,37 @@
 @section('title', 'Giỏ hàng')
 
 @section('content')
-    <section class="breadcrumb">
-        <div class="container">
-            <ul class="breadcrumb-list mb-0">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                <li class="breadcrumb-separator">/</li>
-                <li class="breadcrumb-item"><a href="#">Giỏ hàng (1)</a></li>
-            </ul>
-        </div>
-    </section>
-
+<main class="main-content">
     <section class="cart-page mb-4">
         <div class="container bg-white p-2 p-md-4">
             <div class="row">
                 <div class="col-md-12 col-lg-8 pr-3 border-r">
                     <table class="cart-items-table">
                         <thead>
-                            <tr class="cart-header ">
-                                <th scope="col">#</th>
-                                <th scope="col">Hình ảnh</th>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Giá</th>
-                                <th scope="col">Hành động</th>
+                            <tr class="cart-header">
+                                <th>#</th>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="cartItems">
+                            @foreach ($cart as $key => $item)
                             <tr class="cart-body">
-                                <th scope="row">1</th>
-                                <td><img src="{{ asset('layouts/img/product-1.webp') }}" alt="Product items"></td>
-                                <td class="cart-product-name">Nho mỹ Nh </td>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td><img src="{{ $item['image'] }}" alt="Product items"></td>
+                                <td>{{ $item['name'] }}</td>
                                 <td>
-                                    <input type="number" name="quantity" id="quantity" value="1" min="0">
+                                    <input type="number" name="quantity" data-id="{{ $key }}" class="update-cart" value="{{ $item['quantity'] }}" min="0">
                                 </td>
-                                <td><span>$120</span></td>
+                                <td>{{ $item['price'] }}$</td>
                                 <td>
-                                    <button class="btn btn-danger">Xóa</button>
+                                    <button class="btn btn-danger delete-cart-item" data-id="{{ $key }}">Xóa</button>
                                 </td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -48,17 +40,113 @@
                     <div class="cart-summary">
                         <div class="cart-title">
                             <h3 class="text-left mb-0">Tổng tiền</h3>
-                            <span class="text-right">$123</span>
+                            <span id="totalPrice" class="text-right">{{ $totalPrice }}$</span>
                         </div>
                         <div class="checkout">
                             <a href="#" class="btn">Tiến hành thanh toán</a>
                         </div>
                         <div class="continue">
-                            <a href="" class="btn btn-continue">Tiếp tục mua hàng</a>
+                            <a href="{{ route('home.index') }}" class="btn btn-continue">Tiếp tục mua hàng</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Xóa sản phẩm khỏi giỏ hàng
+        document.querySelectorAll('.delete-cart-item').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+
+                fetch(`/cart/delete/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Xóa sản phẩm khỏi giao diện
+                        this.closest('tr').remove();
+
+                        // Cập nhật tổng giá tiền
+                        document.getElementById('totalPrice').textContent = data.totalPrice + '$';
+
+                        // Cập nhật số lượng sản phẩm trên icon giỏ hàng
+                        document.getElementById('cart-count').textContent = data.cartItemCount || 0; // Đảm bảo rằng số lượng là 0 nếu không có sản phẩm
+                    }
+                })
+                .catch(error => console.error('Lỗi:', error));
+            });
+        });
+
+        // Cập nhật số lượng sản phẩm trong giỏ hàng
+        document.querySelectorAll('.update-cart').forEach(input => {
+            input.addEventListener('change', function () {
+                const id = this.getAttribute('data-id');
+                const quantity = parseInt(this.value, 10); // Chuyển đổi thành số nguyên
+
+                if (quantity < 0) {
+                    alert('Số lượng không thể nhỏ hơn 0');
+                    return;
+                }
+
+                if (quantity === 0) {
+                    // Nếu số lượng bằng 0, gọi hàm xóa sản phẩm
+                    if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+                        fetch(`/cart/delete/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Xóa sản phẩm khỏi giao diện
+                                this.closest('tr').remove();
+
+                                // Cập nhật tổng giá tiền
+                                document.getElementById('totalPrice').textContent = data.totalPrice + '$';
+
+                                // Cập nhật số lượng sản phẩm trên icon giỏ hàng
+                                document.getElementById('cart-count').textContent = data.cartItemCount || 0; // Đảm bảo rằng số lượng là 0 nếu không có sản phẩm
+                            }
+                        })
+                        .catch(error => console.error('Lỗi:', error));
+                    } else {
+                        // Nếu người dùng không muốn xóa, đặt lại giá trị của input
+                        this.value = 1; // Hoặc giá trị mặc định mà bạn muốn
+                    }
+                } else {
+                    // Nếu số lượng lớn hơn 0, gửi yêu cầu cập nhật
+                    fetch(`/cart/update/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ quantity })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Cập nhật tổng giá tiền sau khi thay đổi số lượng
+                            document.getElementById('totalPrice').textContent = data.totalPrice + '$';
+
+                            // Cập nhật số lượng sản phẩm trên icon giỏ hàng
+                            document.getElementById('cart-count').textContent = data.cartItemCount || 0; // Đảm bảo rằng số lượng là 0 nếu không có sản phẩm
+                        }
+                    })
+                    .catch(error => console.error('Lỗi:', error));
+                }
+            });
+        });
+    });
+</script>
 @endsection
