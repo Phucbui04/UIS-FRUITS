@@ -69,7 +69,7 @@
         <br>
         <h4 class="text-center">Tùy chọn giỏ quà</h4>
         <br>
-        <div class="container text-center">
+        {{-- <div class="container text-center">
             <div class="row">
                 @foreach($products as $item)
                 <div class="col-12 col-md-4 col-lg-2 mb-4">
@@ -87,7 +87,7 @@
                 </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
     </section>
 </main>
 
