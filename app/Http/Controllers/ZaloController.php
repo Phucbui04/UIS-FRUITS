@@ -1,5 +1,5 @@
 <?php
-
+/* 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -24,4 +24,4 @@ class ZaloController extends Controller
         return response()->json(['error' => 'Product not found'], 404);
     }
 }
-
+ */

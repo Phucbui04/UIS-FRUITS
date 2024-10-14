@@ -61,9 +61,9 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
     Route::resource('users', AdminUserController::class);
 
 });
-Route::prefix('zaloApi')->group(function () {
+/* Route::prefix('zaloApi')->group(function () {
     Route::get('/products', [ZaloController::class, 'index'])->name('product.index');
     Route::get('/products/{id}', [ZaloController::class, 'detail'])->name('product.detail');
     Route::get('/cart', [ZaloController::class, 'cart'])->name('cart.index');
     Route::get('/checkout', [ZaloController::class, 'checkout'])->name('checkout.index');
-});
+}); */
