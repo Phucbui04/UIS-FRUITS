@@ -23,6 +23,8 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::put('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('cart.delete');
+Route::delete('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+
 
 
 
