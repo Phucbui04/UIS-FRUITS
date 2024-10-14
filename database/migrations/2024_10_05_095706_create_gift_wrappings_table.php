@@ -1,21 +1,15 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateGiftWrappingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('gift_wrappings', function (Blueprint $table) {
             $table->bigIncrements('id'); // Khóa chính
-            $table->unsignedBigInteger('products_id'); // Khóa ngoại liên kết với bảng products
+            $table->unsignedBigInteger('products_id');  // Khóa ngoại liên kết với bảng products
             $table->unsignedBigInteger('user_id'); // Khóa ngoại liên kết với bảng users
             $table->double('price', 8, 2); // Giá
             $table->text('tag'); // Thẻ
@@ -27,11 +21,6 @@ class CreateGiftWrappingsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('gift_wrappings');
