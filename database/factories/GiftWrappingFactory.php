@@ -12,7 +12,6 @@ class GiftWrappingFactory extends Factory
     public function definition()
     {
         return [
-            'products_id' => \App\Models\Product::factory(), // Tạo product giả
             'user_id' => \App\Models\User::factory(), // Tạo user giả
             'price' => $this->faker->randomFloat(2, 5, 50), // Giá ngẫu nhiên từ 5 đến 50
             'tag' => $this->faker->word, // Tag ngẫu nhiên
