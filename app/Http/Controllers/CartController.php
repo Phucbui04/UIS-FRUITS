@@ -28,6 +28,7 @@ class CartController extends Controller
             $cart[$id]['quantity'] += $request->quantity; // Cập nhật số lượng sản phẩm nếu đã tồn tại
         } else {
             $cart[$id] = [
+                'product_id' => $product->id,
                 'name' => $product->name,
                 'price' => $product->price,
                 'image' => $product->image,

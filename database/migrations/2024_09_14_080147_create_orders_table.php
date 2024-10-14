@@ -15,15 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
+            $table->string('email');
             $table->string('address');
             $table->string('status');
             $table->string('payment_method');
             $table->unsignedBigInteger('discounts_id')->nullable(); // Thêm nullable nếu không phải lúc nào cũng có discount
             $table->unsignedBigInteger('user_id');  
             $table->decimal('total_amount', 8, 2); 
+            $table->string('token')->nullable();
             $table->timestamp('order_date'); 
             $table->timestamps();
-
+            
             // Đảm bảo cột tồn tại trước khi tạo khóa ngoại
             $table->foreign('discounts_id')->references('id')->on('discounts')->onDelete('restrict');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');

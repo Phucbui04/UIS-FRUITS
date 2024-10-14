@@ -9,6 +9,8 @@
         <div class="container bg-white p-2 p-md-4">
             <div class="row">
                 <div class="col-md-12 col-lg-8 pr-3 border-r">
+                    <form action=" {{ route('checkout.process') }} " method="post">
+                        @csrf
                     <table class="cart-items-table">
                         <thead>
                             <tr class="cart-header">
@@ -22,28 +24,22 @@
                         </thead>
 
                         <tbody id="cartItems">
-                            @if (count($cart) > 0)
-                                @foreach ($cart as $key => $item)
-                                <tr class="cart-body">
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td><img src="{{ $item['image'] }}" alt="Product items"></td>
-                                    <td>{{ $item['name'] }}</td>
-                                    <td>
-                                        <input type="number" name="quantity" data-id="{{ $key }}" class="update-cart" value="{{ $item['quantity'] }}" min="0">
-                                    </td>
-                                    <td>{{ $item['price'] }}$</td>
-                                    <td>
-                                        <div class="action-btns"> <!-- Đặt nút xóa trong div này -->
-                                            <button class="btn btn-danger delete-cart-item" data-id="{{ $key }}">Xóa</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td colspan="6" class="text-center">Chưa có sản phẩm nào được thêm vào giỏ hàng</td>
-                                </tr>
-                            @endif
+
+                            @foreach ($cart as $key => $item)
+                            <tr class="cart-body">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td><img src="{{ $item['image'] }}" alt="Product items"></td>
+                                <td>{{ $item['name'] }}</td>
+                                <td>
+                                    <input type="number" name="quantity" data-id="{{ $key }}" class="update-cart" value="{{ $item['quantity'] }}" min="0">
+                                </td>
+                                <td>{{ $item['price'] }}$</td>
+                                <td>
+                                    <a class="btn btn-danger delete-cart-item" data-id="{{ $key }}">Xóa</a>
+                                </td>
+                            </tr>
+                            @endforeach
+
                         </tbody>
 
                         
@@ -60,7 +56,7 @@
                             <span id="totalPrice" class="text-right">{{ $totalPrice }}$</span>
                         </div>
                         <div class="checkout">
-                            <a href="#" class="btn">Tiến hành thanh toán</a>
+                            <button class="bnt" type="submit" >Tiến hành thanh toán</button>
                         </div>
                         <div class="continue">
                             <a href="{{ route('home.index') }}" class="btn btn-continue">Tiếp tục mua hàng</a>
@@ -89,7 +85,7 @@
                         <span class="d-block mt-2">{{ $item->name }}</span>
                     </div>
                 </div>
-                @endforeach
+                </form>
             </div>
         </div>
     </section>

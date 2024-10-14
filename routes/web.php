@@ -30,6 +30,10 @@ Route::delete('/cart/clear', [CartController::class, 'clearCart'])->name('cart.c
 
     
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout.process');
+Route::post('/checkout/complete', [CheckoutController::class, 'completeCheckout'])->name('checkout.complete');
+Route::get('/checkout/success', [CheckoutController::class, 'completeCheckout'])->name('checkout.success');
+Route::get('/confirmOrder/{token}',[CheckoutController::class, 'confirmOrder'])->name('confirm.order');
 
 //User
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
@@ -39,10 +43,9 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 
+
 //ADmin
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {   
-
-
 
     Route::get('/', DashboardController::class);
     Route::resource('products', AdminProductController::class)->names([

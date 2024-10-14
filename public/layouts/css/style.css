@@ -1065,8 +1065,8 @@ main {
 
 .checkout-right .info-order-product .qty-check {
     position: absolute;
-    right: 555px;
-    top: 250px;
+    right: 250px;
+    top: 285px;
     padding: 0px 8px;
     background-color: #319f25;
     border-radius: 50%;
@@ -1375,7 +1375,7 @@ footer .input-group .btn {
     }
 
     .checkout-right .info-order-product .qty-check {
-        right: 700px;
+        left: 700px;
         top: 800px;
     }
 

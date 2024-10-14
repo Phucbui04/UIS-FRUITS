@@ -19,6 +19,7 @@ class OrderFactory extends Factory
         return [
             'name' => $this->faker->name,
             'phone' => $this->faker->phoneNumber,
+            'email' => $this->faker->email,
             'address' => $this->faker->address,
             'status' => $this->faker->word,
             'payment_method' => $this->faker->word,
