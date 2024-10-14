@@ -1,7 +1,9 @@
 @extends('layouts.master')
 @section('title', 'Giỏ hàng')
-
 @section('content')
+<style>
+
+</style>
 <main class="main-content">
     <section class="cart-page mb-4">
         <div class="container bg-white p-2 p-md-4">
@@ -18,6 +20,7 @@
                                 <th>Hành động</th>
                             </tr>
                         </thead>
+
                         <tbody id="cartItems">
                             @if (count($cart) > 0)
                                 @foreach ($cart as $key => $item)
@@ -67,11 +70,36 @@
                 </div>
             </div>
         </div>
+        <br>
+        <h4 class="text-center">Tùy chọn giỏ quà</h4>
+        <br>
+        <div class="container text-center">
+            <div class="row">
+                @foreach($products as $item)
+                <div class="col-12 col-md-4 col-lg-2 mb-4">
+                    <div class="product-card p-2 border">
+                        <input type="checkbox" name="selected_product" id="product_{{ $item->id }}"
+                            class="product-checkbox"
+                            data-id="{{ $item->id }}" 
+                            data-name="{{ $item->name }}"
+                            data-img="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
+                            style="float:right;">
+                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png" 
+                            alt="{{ $item->name }}" class="img-fluid">
+                        <span class="d-block mt-2">{{ $item->name }}</span>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </section>
 </main>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Khai báo biến totalPrice để lưu tổng giá
+        let totalPrice = 0;
+
         // Xóa sản phẩm khỏi giỏ hàng
         document.querySelectorAll('.delete-cart-item').forEach(btn => {
             btn.addEventListener('click', function () {
@@ -169,7 +197,11 @@
                 })
                 .catch(error => console.error('Lỗi:', error));
             }
+
         });
     });
+    
+});
+
 </script>
 @endsection
