@@ -40,31 +40,33 @@ class CartController extends Controller
     }
 
     // Cập nhật số lượng giỏ hàng
-    public function updateCart(Request $request, $id)
-    {
-        $cart = Session::get('cart', []);
+   // Cập nhật số lượng giỏ hàng
+public function updateCart(Request $request, $id)
+{
+    $cart = Session::get('cart', []);
 
-        if (isset($cart[$id])) {
-            if ($request->quantity > 0) {
-                $cart[$id]['quantity'] = $request->quantity;
-                Session::put('cart', $cart);
-            } else {
-                // Nếu số lượng bằng 0, xóa sản phẩm khỏi giỏ hàng
-                unset($cart[$id]);
-                Session::put('cart', $cart);
-            }
+    if (isset($cart[$id])) {
+        if ($request->quantity > 0) {
+            $cart[$id]['quantity'] = $request->quantity;
+            Session::put('cart', $cart);
+        } else {
+            // Nếu số lượng bằng 0, xóa sản phẩm khỏi giỏ hàng
+            unset($cart[$id]);
+            Session::put('cart', $cart);
         }
-
-        // Tính tổng tiền và số lượng sản phẩm
-        $totalPrice = $this->calculateTotal();
-        $cartItemCount = array_sum(array_column($cart, 'quantity'));
-
-        return response()->json([
-            'success' => true,
-            'totalPrice' => $totalPrice,
-            'cartItemCount' => $cartItemCount
-        ]);
     }
+
+    // Tính tổng tiền và số lượng sản phẩm
+    $totalPrice = $this->calculateTotal();
+    $cartItemCount = array_sum(array_column($cart, 'quantity'));
+
+    return response()->json([
+        'success' => true,
+        'totalPrice' => $totalPrice,
+        'cartItemCount' => $cartItemCount
+    ]);
+}
+
 
     // Xóa sản phẩm khỏi giỏ hàng
     public function delete($id)
@@ -85,6 +87,19 @@ class CartController extends Controller
             'message' => 'Sản phẩm đã xóa thành công',
             'totalPrice' => $totalPrice,
             'cartItemCount' => $cartItemCount
+        ]);
+    }
+
+    // Xóa toàn bộ sản phẩm khỏi giỏ hàng
+    public function clearCart()
+    {
+        Session::forget('cart'); // Xóa toàn bộ giỏ hàng
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Toàn bộ sản phẩm đã được xóa khỏi giỏ hàng',
+            'totalPrice' => 0,
+            'cartItemCount' => 0
         ]);
     }
 
