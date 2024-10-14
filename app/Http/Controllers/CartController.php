@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -13,8 +14,8 @@ class CartController extends Controller
     {
         $cart = Session::get('cart', []);
         $totalPrice = $this->calculateTotal();
-
-        return view('pages.cart', compact('cart', 'totalPrice'));
+        $products = DB::table('producttype_id')->get();
+        return view('pages.cart', compact('cart', 'totalPrice','products'));
     }
 
     // Thêm sản phẩm vào giỏ hàng

@@ -1,7 +1,9 @@
 @extends('layouts.master')
 @section('title', 'Giỏ hàng')
-
 @section('content')
+<style>
+
+</style>
 <main class="main-content">
     <section class="cart-page mb-4">
         <div class="container bg-white p-2 p-md-4">
@@ -18,11 +20,11 @@
                                 <th>Hành động</th>
                             </tr>
                         </thead>
-                        <tbody id="cartItems">
+                        <tbody >
                             @foreach ($cart as $key => $item)
                             <tr class="cart-body">
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td><img src="{{ $item['image'] }}" alt="Product items"></td>
+                                <td><img src="{{ $item['image'] }}" alt="Product items" style="width: 50px; height: 50px;"></td>
                                 <td>{{ $item['name'] }}</td>
                                 <td>
                                     <input type="number" name="quantity" data-id="{{ $key }}" class="update-cart" value="{{ $item['quantity'] }}" min="0">
@@ -38,8 +40,12 @@
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <div class="cart-summary">
-                        <div class="cart-title">
-                            <h3 class="text-left mb-0">Tổng tiền</h3>
+                        <br>
+                            <div  id="cartItems"></div>
+                            <br>
+                        <div class="cart-title ">
+                            
+                            <h3 class=" mb-0">Tổng tiền</h3>
                             <span id="totalPrice" class="text-right">{{ $totalPrice }}$</span>
                         </div>
                         <div class="checkout">
@@ -52,11 +58,36 @@
                 </div>
             </div>
         </div>
+        <br>
+        <h4 class="text-center">Tùy chọn giỏ quà</h4>
+        <br>
+        <div class="container text-center">
+            <div class="row">
+                @foreach($products as $item)
+                <div class="col-12 col-md-4 col-lg-2 mb-4">
+                    <div class="product-card p-2 border">
+                        <input type="checkbox" name="selected_product" id="product_{{ $item->id }}"
+                            class="product-checkbox"
+                            data-id="{{ $item->id }}" 
+                            data-name="{{ $item->name }}"
+                            data-img="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
+                            style="float:right;">
+                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png" 
+                            alt="{{ $item->name }}" class="img-fluid">
+                        <span class="d-block mt-2">{{ $item->name }}</span>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </section>
 </main>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Khai báo biến totalPrice để lưu tổng giá
+        let totalPrice = 0;
+
         // Xóa sản phẩm khỏi giỏ hàng
         document.querySelectorAll('.delete-cart-item').forEach(btn => {
             btn.addEventListener('click', function () {
@@ -147,6 +178,52 @@
                 }
             });
         });
+
+        // Bắt sự kiện khi người dùng click vào checkbox
+        document.querySelectorAll('.product-checkbox').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            // Bỏ chọn tất cả các checkbox khác
+            document.querySelectorAll('.product-checkbox').forEach(function(otherCheckbox) {
+                if (otherCheckbox !== checkbox) {
+                    otherCheckbox.checked = false; // Bỏ chọn
+                }
+            });
+
+            const productName = this.getAttribute('data-name');
+            const productImg = this.getAttribute('data-img');
+            const productId = this.getAttribute('data-id');
+            const productPrice = 10; // Giả sử mỗi sản phẩm có giá $10, có thể thay bằng giá thực
+
+            if (this.checked) {
+                // Thêm sản phẩm vào danh sách giỏ hàng
+                const cartItem = `
+                    <tr id="cart-item-${productId}" class="cart-title text-center">
+                        <th scope="row"></th>
+                        <td><img src="${productImg}" alt="${productName}" style="width: 100px; height: 100px;"></td>
+                        <td>${productName}</td>
+                    </tr>
+                `;
+                cartItem   remove();
+
+                document.getElementById('cartItems').insertAdjacentHTML('beforeend', cartItem);
+
+                // Cập nhật tổng tiền
+                totalPrice += productPrice;
+            } else {
+                // Xóa sản phẩm khỏi giỏ hàng
+                const cartItem = document.getElementById(`cart-item-${productId}`);
+                if (cartItem) {
+                    totalPrice -= productPrice;
+                    cartItem.remove();
+                }
+            }
+
+            // Cập nhật tổng giá tiền hiển thị
+            document.getElementById('totalPrice').textContent = totalPrice + '$';
+        });
     });
+    
+});
+
 </script>
 @endsection
