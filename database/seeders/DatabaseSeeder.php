@@ -14,6 +14,8 @@ use App\Models\Payment;
 use App\Models\Shipment;
 use App\Models\Favorite;
 use App\Models\GiftWrapping;
+use App\Models\ProductType;
+use App\Models\ProductInGift;
 use App\Models\ProductImage;
 use Illuminate\Database\Seeder;
 
@@ -37,6 +39,8 @@ class DatabaseSeeder extends Seeder
           Payment::factory(3)->create();
           Favorite::factory(3)->create();
           GiftWrapping::factory(3)->create();
+          ProductType::factory(3)->create();
+          ProductInGift::factory(3)->create();
           ProductImage::factory(3)->create();          
 
 
