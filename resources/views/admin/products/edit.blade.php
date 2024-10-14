@@ -4,154 +4,109 @@
         <div class="content">
             <div class="page-header">
                 <div class="page-title">
-                    <h4>Chỉnh sửa sản phẩm</h4>
-                    <h6>Chỉnh sửa sản phẩm của bạn</h6>
+                    <h4>chỉnh sửa</h4>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Product Name</label>
-                                <input type="text" value="Macbook pro">
+            <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Tên sản phẩm</label>
+                                    <input type="text" name="product_name" required class="form-control" value="{{ $product->name }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select class="select">
-                                    <option>Computers</option>
-                                    <option>Mac</option>
-                                </select>
+            
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="category">Danh mục</label>
+                                    <select name="category_id" id="category" class="form-control" required>
+                                        <option value="">{{$categories->name}}</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Sub Category</label>
-                                <select class="select">
-                                    <option>None</option>
-                                    <option>option1</option>
-                                </select>
+            
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Số lượng</label>
+                                    <input type="number" name="quantity" required class="form-control" min="0" value="{{$product->stock}}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Brand</label>
-                                <select class="select">
-                                    <option>None</option>
-                                    <option>option1</option>
-                                </select>
+            
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Giá</label>
+                                    <input type="number" name="price" required class="form-control" min="0" step="0.01" value="{{$product->price}}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Unit</label>
-                                <select class="select">
-                                    <option>Piece</option>
-                                    <option>Kg</option>
-                                </select>
+            
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Giảm giá</label>
+                                    <input type="number" name="discount" class="form-control" min="0" step="0.01" value="{{$product->discount }}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>SKU</label>
-                                <input type="text" value="PT0002">
+            
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Ảnh con</label>
+                                    <input type="file" name="child_images[]" class="form-control" multiple required>
+                                    <small class="form-text text-muted">Chọn ít nhất 3 ảnh (Ctrl + Click để chọn nhiều)</small>
+                                    @if ($errors->has('child_images'))
+                                        <div class="alert alert-danger">
+                                            {{ $errors->first('child_images') }}
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Minimum Qty</label>
-                                <input type="text" value="5">
+            
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Mô tả</label>
+                                    <textarea name="description" id="description" class="form-control"  style="height: 300px;" value="{{$product->description}}"></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Quantity</label>
-                                <input type="text" value="50">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</textarea>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Tax</label>
-                                <select class="select">
-                                    <option>Choose Tax</option>
-                                    <option>2%</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Discount Type</label>
-                                <select class="select">
-                                    <option>Percentage</option>
-                                    <option>10%</option>
-                                    <option>20%</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input type="text" value="1500.00">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label> Status</label>
-                                <select class="select">
-                                    <option>Active</option>
-                                    <option>Open</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label> Product Image</label>
-                                <div class="image-upload">
-                                    <input type="file">
-                                    <div class="image-uploads">
-                                        <img src="{{ asset('assets/img/icons/upload.svg') }}" alt="img">
-                                        <h4>Drag and drop a file to upload</h4>
+            
+                            <div class="col-lg-12">
+                                <div class="form-group text-center">
+                                    <label>Ảnh sản phẩm chính</label>
+                                    <div class="image-upload">
+                                        <input type="file" name="product_image" class="form-control" required>
+                                        <div class="image-uploads">
+                                            <img src="{{ asset('assets/img/icons/upload.svg') }}" alt="img">
+                                            <h4>Kéo và thả một file để tải ảnh lên</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="product-list">
-                                <ul class="row">
-                                    <li>
-                                        <div class="productviews">
-                                            <div class="productviewsimg">
-                                                <img src="assets/img/icons/macbook.svg" alt="img">
-                                            </div>
-                                            <div class="productviewscontent">
-                                                <div class="productviewsname">
-                                                    <h2>macbookpro.jpg</h2>
-                                                    <h3>581kb</h3>
-                                                </div>
-                                                <a href="javascript:void(0);" class="hideset">x</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+            
+                            <div class="col-lg-12 text-center">
+                                <button type="submit" class="btn btn-submit me-2">Đồng ý</button>
+                                <a href="{{ route('admin.products.index') }}" class="btn btn-cancel">Hủy</a>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <a href="javascript:void(0);" class="btn btn-submit me-2">Update</a>
-                            <a href="productlist.html" class="btn btn-cancel">Cancel</a>
                         </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
+            </form>
+            
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.3/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#description',
+            plugins: [
+                'anchor', 'autolink', 'charmap', 'image', 'link', 'lists', 'media', 
+                'searchreplace', 'table', 'visualblocks', 'wordcount'
+            ],
+            toolbar: 'undo redo | bold italic underline | link image media | numlist bullist | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name'
+        });
+    </script>
+    
 @endsection

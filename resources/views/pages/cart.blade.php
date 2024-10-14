@@ -1,7 +1,9 @@
 @extends('layouts.master')
 @section('title', 'Giỏ hàng')
-
 @section('content')
+<style>
+
+</style>
 <main class="main-content">
     <section class="cart-page mb-4">
         <div class="container bg-white p-2 p-md-4">
@@ -12,7 +14,7 @@
                     <table class="cart-items-table">
                         <thead>
                             <tr class="cart-header">
-                                <th>#</th>
+                                <th>STT</th>
                                 <th>Hình ảnh</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Số lượng</th>
@@ -20,7 +22,9 @@
                                 <th>Hành động</th>
                             </tr>
                         </thead>
+
                         <tbody id="cartItems">
+
                             @foreach ($cart as $key => $item)
                             <tr class="cart-body">
                                 <th scope="row">{{ $loop->iteration }}</th>
@@ -35,12 +39,19 @@
                                 </td>
                             </tr>
                             @endforeach
+
                         </tbody>
+
+                        
                     </table>
+                    <!-- Nút xóa toàn bộ giỏ hàng -->
+                        <div class="clear-cart mt-3 text-left">
+                            <button class="btn btn-danger" id="clearCart">Xóa tất cả</button>
+                        </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
-                    <div class="cart-summary">
-                        <div class="cart-title">
+                    <div class="cart-summary d-flex flex-column">
+                        <div class="cart-title d-flex justify-content-between">
                             <h3 class="text-left mb-0">Tổng tiền</h3>
                             <span id="totalPrice" class="text-right">{{ $totalPrice }}$</span>
                         </div>
@@ -50,6 +61,28 @@
                         <div class="continue">
                             <a href="{{ route('home.index') }}" class="btn btn-continue">Tiếp tục mua hàng</a>
                         </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h4 class="text-center">Tùy chọn giỏ quà</h4>
+        <br>
+        <div class="container text-center">
+            <div class="row">
+                @foreach($products as $item)
+                <div class="col-12 col-md-4 col-lg-2 mb-4">
+                    <div class="product-card p-2 border">
+                        <input type="checkbox" name="selected_product" id="product_{{ $item->id }}"
+                            class="product-checkbox"
+                            data-id="{{ $item->id }}" 
+                            data-name="{{ $item->name }}"
+                            data-img="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
+                            style="float:right;">
+                        <img src="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png" 
+                            alt="{{ $item->name }}" class="img-fluid">
+                        <span class="d-block mt-2">{{ $item->name }}</span>
                     </div>
                 </div>
                 </form>
@@ -60,6 +93,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Khai báo biến totalPrice để lưu tổng giá
+        let totalPrice = 0;
+
         // Xóa sản phẩm khỏi giỏ hàng
         document.querySelectorAll('.delete-cart-item').forEach(btn => {
             btn.addEventListener('click', function () {
@@ -74,14 +110,9 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Xóa sản phẩm khỏi giao diện
                         this.closest('tr').remove();
-
-                        // Cập nhật tổng giá tiền
                         document.getElementById('totalPrice').textContent = data.totalPrice + '$';
-
-                        // Cập nhật số lượng sản phẩm trên icon giỏ hàng
-                        document.getElementById('cart-count').textContent = data.cartItemCount || 0; // Đảm bảo rằng số lượng là 0 nếu không có sản phẩm
+                        document.getElementById('cart-count').textContent = data.cartItemCount || 0;
                     }
                 })
                 .catch(error => console.error('Lỗi:', error));
@@ -99,8 +130,8 @@
                     return;
                 }
 
+                // Nếu số lượng bằng 0, gọi hàm xóa sản phẩm
                 if (quantity === 0) {
-                    // Nếu số lượng bằng 0, gọi hàm xóa sản phẩm
                     if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
                         fetch(`/cart/delete/${id}`, {
                             method: 'DELETE',
@@ -111,14 +142,9 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                // Xóa sản phẩm khỏi giao diện
                                 this.closest('tr').remove();
-
-                                // Cập nhật tổng giá tiền
                                 document.getElementById('totalPrice').textContent = data.totalPrice + '$';
-
-                                // Cập nhật số lượng sản phẩm trên icon giỏ hàng
-                                document.getElementById('cart-count').textContent = data.cartItemCount || 0; // Đảm bảo rằng số lượng là 0 nếu không có sản phẩm
+                                document.getElementById('cart-count').textContent = data.cartItemCount || 0;
                             }
                         })
                         .catch(error => console.error('Lỗi:', error));
@@ -139,17 +165,39 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            // Cập nhật tổng giá tiền sau khi thay đổi số lượng
                             document.getElementById('totalPrice').textContent = data.totalPrice + '$';
-
-                            // Cập nhật số lượng sản phẩm trên icon giỏ hàng
-                            document.getElementById('cart-count').textContent = data.cartItemCount || 0; // Đảm bảo rằng số lượng là 0 nếu không có sản phẩm
+                            document.getElementById('cart-count').textContent = data.cartItemCount || 0;
                         }
                     })
                     .catch(error => console.error('Lỗi:', error));
                 }
             });
         });
+
+        // Xóa toàn bộ sản phẩm trong giỏ hàng
+        document.getElementById('clearCart').addEventListener('click', function () {
+            if (confirm('Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng?')) {
+                fetch('/cart/clear', {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('cartItems').innerHTML = '';
+                        document.getElementById('totalPrice').textContent = '0$';
+                        document.getElementById('cart-count').textContent = '0';
+                    }
+                })
+                .catch(error => console.error('Lỗi:', error));
+            }
+
+        });
     });
+    
+});
+
 </script>
 @endsection

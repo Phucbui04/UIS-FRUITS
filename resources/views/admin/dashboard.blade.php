@@ -94,7 +94,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-7 col-sm-12 col-12 d-flex">
+                <div class="col-lg-12 col-sm-12 col-12 d-flex">
                     <div class="card flex-fill">
                         <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                             <h5 class="card-title mb-0">Purchase & Sales</h5>
@@ -126,88 +126,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div id="sales_charts"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-sm-12 col-12 d-flex">
-                    <div class="card flex-fill">
-                        <div class="card-header pb-0 d-flex justify-content-between align-items-center">
-                            <h4 class="card-title mb-0">Recently Added Products</h4>
-                            <div class="dropdown">
-                                <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false"
-                                    class="dropset">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li>
-                                        <a href="productlist.html" class="dropdown-item">Product List</a>
-                                    </li>
-                                    <li>
-                                        <a href="addproduct.html" class="dropdown-item">Product Add</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive dataview">
-                                <table class="table datatable ">
-                                    <thead>
-                                        <tr>
-                                            <th>Sno</th>
-                                            <th>Products</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="productimgname">
-                                                <a href="productlist.html" class="product-img">
-                                                    <img src="assets/img/product/product22.jpg" alt="product">
-                                                </a>
-                                                <a href="productlist.html">Apple Earpods</a>
-                                            </td>
-                                            <td>$891.2</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="productimgname">
-                                                <a href="productlist.html" class="product-img">
-                                                    <img src="assets/img/product/product23.jpg" alt="product">
-                                                </a>
-                                                <a href="productlist.html">iPhone 11</a>
-                                            </td>
-                                            <td>$668.51</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="productimgname">
-                                                <a href="productlist.html" class="product-img">
-                                                    <img src="assets/img/product/product24.jpg" alt="product">
-                                                </a>
-                                                <a href="productlist.html">samsung</a>
-                                            </td>
-                                            <td>$522.29</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td class="productimgname">
-                                                <a href="productlist.html" class="product-img">
-                                                    <img src="assets/img/product/product6.jpg" alt="product">
-                                                </a>
-                                                <a href="productlist.html">Macbook Pro</a>
-                                            </td>
-                                            <td>$291.01</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
+            <div class="card-body d-flex flex-column">
+                <div id="line_chart" style="width: 100%; height: 300px; margin-bottom: 20px;"></div>
+                <div id="bar_chart" style="width: 100%; height: 300px;"></div>
+            </div>
+           
             <div class="card mb-0">
                 <div class="card-body">
                     <h4 class="card-title">Expired Products</h4>
@@ -254,7 +181,7 @@
                                     <td>3</td>
                                     <td><a href="javascript:void(0);">IT0003</a></td>
                                     <td class="productimgname">
-                                        <a class="product-img" href="productlist.html">
+                                        <a class="product-img" href="">
                                             <img src="assets/img/product/product4.jpg" alt="product">
                                         </a>
                                         <a href="productlist.html">Stawberry</a>
@@ -284,3 +211,88 @@
         </div>
     </div>
 @endsection
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="/public/assets/js/chart-area-demo.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawLineChart);
+
+function drawLineChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Ngày', 'Giá trị'],
+        ['01', 120],
+        ['02', 150],
+        ['03', 170],
+        ['04', 130],
+        ['05', 200],
+        ['06', 180],
+        ['07', 190],
+        ['08', 220],
+        ['09', 210],
+        ['10', 250],
+        ['11', 300],
+        ['12', 280],
+        ['13', 240],
+        ['14', 300],
+        ['15', 320],
+        ['16', 350],
+        ['17', 370],
+        ['18', 400],
+        ['19', 380],
+        ['20', 360],
+        ['21', 340],
+        ['22', 320],
+        ['23', 310],
+        ['24', 300],
+        ['25', 290],
+        ['26', 270],
+        ['27', 260],
+        ['28', 250],
+        ['29', 240],
+        ['30', 230]
+    ]);
+
+    var options = {
+        title: 'Biểu đồ đường theo ngày trong tháng',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+    chart.draw(data, options);
+}
+google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawBarChart);
+
+    function drawBarChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Tháng', 'Giá trị'],
+            ['Tháng 1', 300],
+            ['Tháng 2', 400],
+            ['Tháng 3', 350],
+            ['Tháng 4', 450],
+            ['Tháng 5', 500],
+            ['Tháng 6', 600],
+            ['Tháng 7', 550],
+            ['Tháng 8', 700],
+            ['Tháng 9', 650],
+            ['Tháng 10', 800],
+            ['Tháng 11', 750],
+            ['Tháng 12', 900]
+        ]);
+
+        var options = {
+            title: 'Biểu đồ cột theo tháng trong năm',
+            hAxis: {title: 'Tháng'},
+            vAxis: {title: 'Giá trị'},
+            legend: 'none'
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart'));
+        chart.draw(data, options);
+    }
+</script>
+<script>
+
+</script>
