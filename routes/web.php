@@ -4,12 +4,12 @@ use App\Http\Controllers\Admins\AdminCategoryController;
 use App\Http\Controllers\Admins\AdminProductController;
 use App\Http\Controllers\Admins\AdminUserController;
 use App\Http\Controllers\Admins\DashboardController;
+use App\Http\Controllers\Admins\DiscountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
-
 use App\Http\Controllers\ZaloController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -44,7 +44,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 //ADmin
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {   
 
-    Route::get('/', DashboardController::class);
+    Route::get('/', DashboardController::class)->name('admin.dashboard.index');
     Route::resource('products', AdminProductController::class)->names([
         'index' => 'admin.products.index',
         'create' => 'admin.products.create',
@@ -54,13 +54,37 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
         'update' => 'admin.products.update',
         'destroy' => 'admin.products.destroy',
     ]);
-    Route::resource('categories', AdminCategoryController::class);
-    Route::resource('users', AdminUserController::class);
-
+    Route::resource('categories', AdminCategoryController::class)->names([
+        'index' => 'admin.categories.index',
+        'create' => 'admin.categories.create',
+        'store' => 'admin.categories.store',
+        'show' => 'admin.categories.show',
+        'edit' => 'admin.categories.edit',
+        'update' => 'admin.categories.update',
+        'destroy' => 'admin.categories.destroy',
+    ]);
+    Route::resource('users', AdminUserController::class)->names([
+        'index' => 'admin.users.index',
+        'create' => 'admin.users.create',
+        'store' => 'admin.users.store',
+        'show' => 'admin.users.show',
+        'edit' => 'admin.users.edit',
+        'update' => 'admin.users.update',
+        'destroy' => 'admin.users.destroy',
+    ]);
+    Route::resource('discount',DiscountController::class)->names([
+        'index' => 'admin.discount.index',
+        'create' => 'admin.discount.create',
+        'store' => 'admin.discount.store',
+        'show' => 'admin.discount.show',
+        'edit' => 'admin.discount.edit',
+        'update' => 'admin.discount.update',
+        'destroy' => 'admin.discount.destroy',
+    ]);
 });
-// Route::prefix('zaloApi')->group(function () {
-//     Route::get('/products', [ZaloController::class, 'index'])->name('product.index');
-//     Route::get('/products/{id}', [ZaloController::class, 'detail'])->name('product.detail');
-//     Route::get('/cart', [ZaloController::class, 'cart'])->name('cart.index');
-//     Route::get('/checkout', [ZaloController::class, 'checkout'])->name('checkout.index');
-// });
+Route::prefix('zaloApi')->group(function () {
+    Route::get('api/products', [ZaloController::class, 'index'])->name('zalo.product.index');
+    Route::get('api/categories', [ZaloController::class, 'categories'])->name('zalo.cart.index');
+    Route::get('api/checkout', [ZaloController::class, 'checkout'])->name('zalo.checkout.index');
+    Route::get('api/productsByCategory', [ZaloController::class, 'productsByCategory'])->name('zalo.productsByCategory.index');
+});

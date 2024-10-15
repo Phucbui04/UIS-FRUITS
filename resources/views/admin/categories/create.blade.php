@@ -8,52 +8,28 @@
                     <h6>Create new product Category</h6>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <!-- Category Name -->
-                        <div class="col-lg-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Category Name</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <!-- Category Code -->
-                        <div class="col-lg-6 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Category Code</label>
-                                <input type="text">
-                            </div>
-                        </div>
-                        <!-- Description -->
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control"></textarea>
-                            </div>
-                        </div>
-                        <!-- Product Image -->
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Product Image</label>
-                                <div class="image-upload">
-                                    <input type="file">
-                                    <div class="image-uploads">
-                                        <img src="{{ asset('assets/img/icons/upload.svg') }}" alt="img">
-                                        <h4>Drag and drop a file to upload</h4>
-                                    </div>
+            <form action="{{ route('admin.categories.store') }}" method="post">
+                @csrf <!-- Thêm CSRF token để bảo mật -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Category Name -->
+                            <div class="col-lg-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Category Name</label>
+                                    <input type="text" name="name" required class="form-control"> <!-- Thêm class và required -->
                                 </div>
                             </div>
-                        </div>
-                        <!-- Submit and Cancel Buttons -->
-                        <div class="col-lg-12">
-                            <a href="javascript:void(0);" class="btn btn-submit me-2">Submit</a>
-                            <a href="categorylist.html" class="btn btn-cancel">Cancel</a>
+                            <!-- Submit and Cancel Buttons -->
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-submit me-2">Submit</button> <!-- Sử dụng button thay vì a -->
+                                <a href="{{ route('admin.categories.create') }}" class="btn btn-cancel">Cancel</a> <!-- Cập nhật link đến route -->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
+            
         </div>
     </div>
 @endsection
