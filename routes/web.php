@@ -5,6 +5,7 @@ use App\Http\Controllers\Admins\AdminProductController;
 use App\Http\Controllers\Admins\AdminUserController;
 use App\Http\Controllers\Admins\DashboardController;
 use App\Http\Controllers\Admins\DiscountController;
+use App\Http\Controllers\Admins\AdminOrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -45,6 +46,12 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::prefix('admin')->middleware('checkAdmin')->group(function () {   
 
     Route::get('/', DashboardController::class)->name('admin.dashboard.index');
+    Route::prefix('dashboard')->middleware('checkAdmin')->group(function () {
+      
+        Route::get('/get-users', [DashboardController::class, 'getUser'])->name('admin.dashboard.getUser');
+    });
+
+
     Route::resource('products', AdminProductController::class)->names([
         'index' => 'admin.products.index',
         'create' => 'admin.products.create',
@@ -80,6 +87,16 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
         'edit' => 'admin.discount.edit',
         'update' => 'admin.discount.update',
         'destroy' => 'admin.discount.destroy',
+    ]);
+    Route::resource('order', AdminOrderController::class)->names([
+        'index' => 'admin.orders.index',
+        'show' => 'admin.orders.details',
+        'create' => 'admin.orders.create',
+        'store' => 'admin.orders.store',
+        'show' => 'admin.orders.show',
+        'edit' => 'admin.orders.edit',
+        'update' => 'admin.orders.update',
+        'destroy' => 'admin.orders.destroy',
     ]);
 });
 Route::prefix('zaloApi')->group(function () {

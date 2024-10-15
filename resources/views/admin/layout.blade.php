@@ -12,7 +12,7 @@
     <title>Admin</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.jpg') }}">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
@@ -289,8 +289,8 @@
                                     alt="img"><span>
                                     Đơn hàng</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="quotationList.html">danh sách đơn hàng </a></li>
-                                <li><a href="addquotation.html"></a></li>
+                                <li><a href="{{route('admin.orders.index')}}">danh sách đơn hàng </a></li>
+                              
                             </ul>
                         </li>
 
@@ -344,8 +344,7 @@
     <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert/sweetalerts.min.js') }}"></script>
-<script src="{{asset('assets/js/chart-area-demo.js')}}"></script>
-<script src="{{asset('assets/js/chart-bar-demo.js')}}"></script>
+
 
 </body>
 

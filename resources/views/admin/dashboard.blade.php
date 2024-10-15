@@ -3,66 +3,24 @@
     <div class="page-wrapper">
         <div class="content">
             <div class="row">
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="dash-widget">
-                        <div class="dash-widgetimg">
-                            <span><img src="assets/img/icons/dash1.svg" alt="img"></span>
-                        </div>
-                        <div class="dash-widgetcontent">
-                            <h5>$<span class="counters" data-count="307144.00">$307,144.00</span></h5>
-                            <h6>Total Purchase Due</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="dash-widget dash1">
-                        <div class="dash-widgetimg">
-                            <span><img src="assets/img/icons/dash2.svg" alt="img"></span>
-                        </div>
-                        <div class="dash-widgetcontent">
-                            <h5>$<span class="counters" data-count="4385.00">$4,385.00</span></h5>
-                            <h6>Total Sales Due</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="dash-widget dash2">
-                        <div class="dash-widgetimg">
-                            <span><img src="assets/img/icons/dash3.svg" alt="img"></span>
-                        </div>
-                        <div class="dash-widgetcontent">
-                            <h5>$<span class="counters" data-count="385656.50">385,656.50</span></h5>
-                            <h6>Total Sale Amount</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="dash-widget dash3">
-                        <div class="dash-widgetimg">
-                            <span><img src="assets/img/icons/dash4.svg" alt="img"></span>
-                        </div>
-                        <div class="dash-widgetcontent">
-                            <h5>$<span class="counters" data-count="40000.00">400.00</span></h5>
-                            <h6>Total Sale Amount</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12 d-flex">
+               
+                <div class="col-lg-3 col-sm-6 col-12 d-flex " onclick="getUser()">
                     <div class="dash-count">
-                        <div class="dash-counts">
-                            <h4>100</h4>
-                            <h5>Customers</h5>
+                        <div class="dash-counts" >
+                            <h4>21</h4>
+                            <h5>Người dùng</h5>
                         </div>
                         <div class="dash-imgs">
                             <i data-feather="user"></i>
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-3 col-sm-6 col-12 d-flex">
                     <div class="dash-count das1">
                         <div class="dash-counts">
-                            <h4>100</h4>
-                            <h5>Suppliers</h5>
+                            <h4>{{$products}}</h4>
+                            <h5>Sản phẩm</h5>
                         </div>
                         <div class="dash-imgs">
                             <i data-feather="user-check"></i>
@@ -72,8 +30,8 @@
                 <div class="col-lg-3 col-sm-6 col-12 d-flex">
                     <div class="dash-count das2">
                         <div class="dash-counts">
-                            <h4>100</h4>
-                            <h5>Purchase Invoice</h5>
+                            <h4>{{$discount}}</h4>
+                            <h5>mã giảm giá</h5>
                         </div>
                         <div class="dash-imgs">
                             <i data-feather="file-text"></i>
@@ -130,10 +88,23 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body d-flex flex-column">
-                <div id="line_chart" style="width: 100%; height: 300px; margin-bottom: 20px;"></div>
-                <div id="bar_chart" style="width: 100%; height: 300px;"></div>
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="line_chart" ></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="bar_chart" ></div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
            
             <div class="card mb-0">
                 <div class="card-body">
@@ -211,8 +182,7 @@
         </div>
     </div>
 @endsection
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="/public/assets/js/chart-area-demo.js"></script>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     google.charts.load('current', {'packages':['corechart']});
@@ -294,5 +264,18 @@ google.charts.load('current', {packages: ['corechart']});
     }
 </script>
 <script>
-
+function getUser() {
+    $.ajax({
+        url: '/get-users', // Sử dụng route name để tạo URL
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            console.log(response); // Xử lý dữ liệu nhận được
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText); /
+        }
+    });
+    
+}
 </script>
