@@ -14,7 +14,7 @@ class CartController extends Controller
     {
         $cart = Session::get('cart', []);
         $totalPrice = $this->calculateTotal();
-        $products = DB::table('producttype_id')->get();
+        $products = DB::table('product_types')->get();
         return view('pages.cart', compact('cart', 'totalPrice','products'));
     }
 

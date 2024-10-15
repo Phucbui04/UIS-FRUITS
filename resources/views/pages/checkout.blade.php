@@ -42,6 +42,19 @@
                     $totalPrice = 0;
                 @endphp
                 <div class="checkout-right col-lg-5 px-4">
+                    <div class="gift">
+                        <p class="text-center"> giỏ quà của bạn chọn bạn c </p>
+                        @if($selectedGift)
+                        <div class="selected-gift text-center">
+                            <img src="{{ $selectedGift->image }}" alt="{{ $selectedGift->name }}" class="img-fluid" style="width: 100px;">
+                            <br>
+                            <span>{{ $selectedGift->name }}</span>
+                        </div>
+                    @else
+                        <p>Không tìm thấy sản phẩm quà tặng.</p>
+                    @endif
+                    </div>
+                    
                     <h2 class="sidebar-title"> {{ count($products) }} Sản phẩm trong giỏ hàng </h2>
                     @foreach($products as $item)
                     <div class="info-order-product">

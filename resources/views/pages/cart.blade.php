@@ -1,69 +1,68 @@
 @extends('layouts.master')
 @section('title', 'Giỏ hàng')
 @section('content')
-<style>
 
-</style>
 <main class="main-content">
+    <form action="{{ route('checkout.process') }}" method="post">
     <section class="cart-page mb-4">
         <div class="container bg-white p-2 p-md-4">
             <div class="row">
                 <div class="col-md-12 col-lg-8 pr-3 border-r">
-                    <form action=" {{ route('checkout.process') }} " method="post">
+               
                         @csrf
-                    <table class="cart-items-table">
-                        <thead>
-                            <tr class="cart-header">
-                                <th>STT</th>
-                                <th>Hình ảnh</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Số lượng</th>
-                                <th>Giá</th>
-                                <th>Hành động</th>
-                            </tr>
-                        </thead>
-
-                        <tbody id="cartItems">
-
-                            @foreach ($cart as $key => $item)
-                            <tr class="cart-body">
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td><img src="{{ $item['image'] }}" alt="Product items"></td>
-                                <td>{{ $item['name'] }}</td>
-                                <td>
-                                    <input type="number" name="quantity" data-id="{{ $key }}" class="update-cart" value="{{ $item['quantity'] }}" min="0">
-                                </td>
-                                <td>{{ $item['price'] }}$</td>
-                                <td>
-                                    <a class="btn btn-danger delete-cart-item" data-id="{{ $key }}">Xóa</a>
-                                </td>
-                            </tr>
-                            @endforeach
-
-                        </tbody>
-
-                        
-                    </table>
-                    <!-- Nút xóa toàn bộ giỏ hàng -->
+                        <table class="cart-items-table">
+                            <thead>
+                                <tr class="cart-header">
+                                    <th>STT</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartItems">
+                                @foreach ($cart as $key => $item)
+                                <tr class="cart-body">
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td><img src="{{ $item['image'] }}" alt="Product items"></td>
+                                    <td>{{ $item['name'] }}</td>
+                                    <td>
+                                        <input type="number" name="quantity[{{ $key }}]" data-id="{{ $key }}" class="update-cart" value="{{ $item['quantity'] }}" min="0">
+                                    </td>
+                                    <td>{{ $item['price'] }}$</td>
+                                    <td>
+                                        <a class="btn btn-danger delete-cart-item" data-id="{{ $key }}">Xóa</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <!-- Nút xóa toàn bộ giỏ hàng -->
                         <div class="clear-cart mt-3 text-left">
                             <button class="btn btn-danger" id="clearCart">Xóa tất cả</button>
                         </div>
+                        <br>
+                        <div class="continue">
+
+                            <a href="{{ route('home.index') }}" class="btn btn-success">Tiếp tục mua hàng</a>
+                        </div>
+                 
                 </div>
                 <div class="col-md-12 col-lg-4">
                     <div class="cart-summary d-flex flex-column">
+                        <div class="gift"></div>
                         <div class="cart-title d-flex justify-content-between">
                             <h3 class="text-left mb-0">Tổng tiền</h3>
                             <span id="totalPrice" class="text-right">{{ $totalPrice }}$</span>
                         </div>
-                        <div class="checkout">
-                            <button class="bnt" type="submit" >Tiến hành thanh toán</button>
-                        </div>
-                        <div class="continue">
-                            <a href="{{ route('home.index') }}" class="btn btn-continue">Tiếp tục mua hàng</a>
+                        <div class="checkoutbtn btn btn-outline-success">
+                            <button class="btn" type="submit">Tiến hành thanh toán</button>
                         </div>
                         
                     </div>
                 </div>
+         
             </div>
         </div>
         <br>
@@ -74,8 +73,8 @@
                 @foreach($products as $item)
                 <div class="col-12 col-md-4 col-lg-2 mb-4">
                     <div class="product-card p-2 border">
-                        <input type="checkbox" name="selected_product" id="product_{{ $item->id }}"
-                            class="product-checkbox"
+                        <input type="checkbox" name="selected_product[]" id="product_{{ $item->id }}"
+                            class="product-checkbox "  value="{{ $item->id }}"
                             data-id="{{ $item->id }}" 
                             data-name="{{ $item->name }}"
                             data-img="https://product.hstatic.net/1000141988/product/nho_xanh_autumn_crisp_my_7ae52124f8474603bf8aeee5313abd08_large.png"
@@ -85,10 +84,13 @@
                         <span class="d-block mt-2">{{ $item->name }}</span>
                     </div>
                 </div>
-                </form>
+            
+                @endforeach
             </div>
         </div>
+    </form> <!-- Đóng thẻ form ở đây -->
     </section>
+    
 </main>
 
 <script>
@@ -193,10 +195,45 @@
                 })
                 .catch(error => console.error('Lỗi:', error));
             }
-
         });
     });
-    
-
 </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        const giftContainer = document.querySelector('.gift');
+    
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                // Nếu checkbox được chọn
+                if (this.checked) {
+                    // Xóa các checkbox khác
+                    checkboxes.forEach(otherCheckbox => {
+                        if (otherCheckbox !== this) {
+                            otherCheckbox.checked = false;
+                        }
+                    });
+    
+                    // Cập nhật nội dung của giftContainer
+                    const productId = this.getAttribute('data-id');
+                    const productName = this.getAttribute('data-name');
+                    const productImg = this.getAttribute('data-img');
+    
+                    // Hiển thị sản phẩm đã chọn
+                    giftContainer.innerHTML = `
+                        <div class="selected-gift text-center">
+                            <img src="${productImg}" alt="${productName}" class="img-fluid" style="width: 100px;">
+                            <br>
+                            <span>${productName}</span>
+                        </div>
+                    `;
+                } else {
+                    // Nếu checkbox không được chọn, xóa nội dung giftContainer
+                    giftContainer.innerHTML = '';
+                }
+            });
+        });
+    });
+    </script>
+    
 @endsection

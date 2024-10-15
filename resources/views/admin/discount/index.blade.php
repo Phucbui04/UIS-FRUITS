@@ -8,8 +8,8 @@
                     <h6>View/Search product Category</h6>
                 </div>
                 <div class="page-btn">
-                    <a href="{{route('admin.categories.create')}}" class="btn btn-added">
-                        <img src="{{ asset('assets/img/icons/plus.svg') }}" class="me-1" alt="img">THÊM DANH MỤC 
+                    <a href="{{route('admin.discount.create')}}" class="btn btn-added">
+                        <img src="{{ asset('assets/img/icons/plus.svg') }}" class="me-1" alt="img">THÊM MÃ GIẢM GIÁ
                     </a>
                 </div>
             </div>
@@ -94,13 +94,17 @@
                                             <span class="checkmarks"></span>
                                         </label>
                                     </th>
-                                    <th>Tên danh mục</th>
-                                    <th>Created By</th>
+                                    <th>id</th>
+                                    <th>mã giảm giá</th>
+                                    <th>Phần trăm giảm giá</th>
+                                  {{--   <th>mô tả</th> --}}
+                                    <th>ngày bắt đầu</th>
+                                    <th>ngày kết thúc</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($category as $item)
+                                @foreach($discounts as $item)
                                 <tr>
                                     <td>
                                         <label class="checkboxs">
@@ -109,13 +113,17 @@
                                         </label>
                                     </td>
                                
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->created_at}}</td>
+                                    <td>{{$item->id}}</td>
+                                    <td>{{$item->code}}</td>
+                                  {{--   <td>{{$item->discount_percent}}</td> --}}
+                                    <td>{{$item->description}}</td>
+                                    <td>{{$item->valid_form}}</td>
+                                    <td>{{$item->valid_end}}</td>
                                     <td>
-                                        <a class="me-3" href="{{ route('admin.categories.edit', $item->id) }}">
+                                        <a class="me-3" href="{{ route('admin.discount.edit', $item->id) }}">
                                             <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
                                         </a>
-                                        <form action="{{ route('admin.categories.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ route('admin.discount.destroy', $item->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE') <!-- Thêm method DELETE -->
                                             <button type="submit" class="btn  btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">

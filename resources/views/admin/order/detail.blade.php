@@ -1,5 +1,25 @@
 @extends('admin.layout')
 @section('content')
+<style>
+    .full-screen {
+        position: relative;
+        width: 100vw; /* Chiếm toàn bộ chiều rộng màn hình */
+        height: 100vh; /* Chiếm toàn bộ chiều cao màn hình */
+        padding: 20px; /* Thêm padding nếu cần */
+        box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+    }
+
+    .card {
+        height: 100%; /* Đảm bảo card chiếm toàn bộ chiều cao của khung */
+        overflow: auto; /* Cho phép cuộn nếu nội dung lớn hơn */
+    }
+
+    .table-responsive {
+        height: calc(100% - 60px); /* Giữ lại không gian cho tiêu đề và các phần khác */
+        overflow-y: auto; /* Cho phép cuộn theo chiều dọc */
+    }
+</style>
+
     <div class="page-wrapper">
         <div class="content">
             <div class="page-header">
@@ -8,8 +28,8 @@
                     <h6>View/Search product Category</h6>
                 </div>
                 <div class="page-btn">
-                    <a href="{{route('admin.categories.create')}}" class="btn btn-added">
-                        <img src="{{ asset('assets/img/icons/plus.svg') }}" class="me-1" alt="img">THÊM DANH MỤC 
+                    <a href="{{--  --}}" class="btn btn-added">
+                        <img src="{{ asset('assets/img/icons/plus.svg') }}" class="me-1" alt="img">THÊM MÃ GIẢM GIÁ
                     </a>
                 </div>
             </div>
@@ -87,6 +107,19 @@
                     <div class="table-responsive">
                         <table class="table datanew">
                             <thead>
+                                <div class="card-body">
+                                    <h5>Thông tin người dùng:</h5>
+                                    <br>
+                                    <p>Tên người dùng: {{ $order->user->name }}</p>
+                                
+                                    <p>Email: {{ $order->user->email }}</p>
+                                    <h5>Mã đơn hàng</h5>
+                                    
+                                    <!-- Thêm thông tin khác của người dùng nếu cần -->
+                
+                                    <div class="table-top">
+                                        <!-- Nội dung của table-top -->
+                                    </div>
                                 <tr>
                                     <th>
                                         <label class="checkboxs">
@@ -94,41 +127,37 @@
                                             <span class="checkmarks"></span>
                                         </label>
                                     </th>
-                                    <th>Tên danh mục</th>
-                                    <th>Created By</th>
-                                    <th>Action</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Số lượng</th>
+                                    <th>Giá</th>
+                                    <th>Tổng giá</th>
+                                    
+                                    <th>ngày đặt hàng</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($category as $item)
-                                <tr>
-                                    <td>
-                                        <label class="checkboxs">
-                                            <input type="checkbox">
-                                            <span class="checkmarks"></span>
-                                        </label>
-                                    </td>
-                               
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->created_at}}</td>
-                                    <td>
-                                        <a class="me-3" href="{{ route('admin.categories.edit', $item->id) }}">
-                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
-                                        </a>
-                                        <form action="{{ route('admin.categories.destroy', $item->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE') <!-- Thêm method DELETE -->
-                                            <button type="submit" class="btn  btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">
-                                                <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach;
-                                <!-- Repeat the above <tr> for other items -->
+                                @foreach($order->orderDetails as $orderDetail)
+            <tr>
+                <td><label class="checkboxs">
+                    <input type="checkbox" id="select-all">
+                    <span class="checkmarks"></span>
+                </label></td>
+                <td>{{ $orderDetail->product->name }}</td>
+                <td>
+                    <img src="{{ asset('storage/' . $orderDetail->product->image) }}" alt="{{ $orderDetail->product->name }}" width="100">
+                </td>
+                <td>{{ $orderDetail->quantity }}</td>
+                <td>{{ number_format($orderDetail->price, 2) }}</td>
+                <td>{{ number_format($orderDetail->total_price, 2) }}</td>
+              
+                <td>{{ $order->order_date }}</td>
+            </tr>
+        @endforeach
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>
         </div>

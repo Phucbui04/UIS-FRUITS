@@ -10,91 +10,62 @@
             </div>
 
             <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" value="Thomas">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" value="">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>User Name</label>
-                                <input type="text" value="Thomas12">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Password</label>
-                                <div class="pass-group">
-                                    <input type="password" class=" pass-input" placeholder="123456">
-                                    <span class="fas toggle-password fa-eye-slash"></span>
+                <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT') <!-- Thêm phương thức PUT cho cập nhật -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>tên</label>
+                                    <input type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control" required>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="text" value="+123456789">
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>email</label>
+                                    <input type="text" name="email" value="{{ old('email', $user->email) }}" class="form-control" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" value="thomas@mail.com">
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="form-group">
-                                <label>Role</label>
-                                <select class="select">
-                                    <option>Owner</option>
-                                    <option> </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label> User Image</label>
-                                <div class="image-upload">
-                                    <input type="file">
-                                    <div class="image-uploads">
-                                        <img src="{{ asset('assets/img/icons/upload.svg') }}" alt="img">
-                                        <h4>Drag and drop a file to upload</h4>
+                            
+                          {{--   <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <div class="pass-group">
+                                        <input type="password" name="password" class="form-control pass-input" placeholder="123456" autocomplete="off">
+                                        <span class="fas toggle-password fa-eye-slash"></span>
                                     </div>
                                 </div>
+                            </div> --}}
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>số điện thoại</label>
+                                    <input type="text" name="phone" value="{{ old('phone', $user->phone) }}" class="form-control" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="product-list">
-                                <ul class="row">
-                                    <li class="ps-0">
-                                        <div class="productviewset">
-                                            <div class="productviewsimg">
-                                                <img src="{{ asset('assets/img/customer/profile2.jpg') }}" alt="img">
-                                            </div>
-                                            <div class="productviewscontent">
-                                                <a href="javascript:void(0);" class="hideset"><i
-                                                        class="fa fa-trash-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>địa chỉ</label>
+                                    <input type="email" name="address" value="{{ old('email', $user->email) }}" class="form-control" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <a class="btn btn-submit me-2">Update</a>
-                            <a class="btn btn-cancel">Cancel</a>
+                            <div class="col-lg-3 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <select name="role" class="select form-control" required>
+                                        <option value="Owner" {{ $user->role == 'Owner' ? 'selected' : '' }}>Owner</option>
+                                        <option value="User" {{ $user->role == 'User' ? 'selected' : '' }}>User</option>
+                                    </select>
+                                </div>
+                            </div>
+                           
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-submit me-2">Update</button>
+                                <a href="{{ route('admin.users.index') }}" class="btn btn-cancel">Cancel</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
         </div>

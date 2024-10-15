@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Mail\OrderMail;
 use App\Models\Product;
+use App\Models\ProductType;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -29,10 +30,19 @@ class CheckoutController extends Controller
         // }
         return view('pages.checkout', compact('products'));
     }
-    public function checkout()
+    public function checkout(Request $request)
     {
+       /*  dd($request->all()); */
         $cart = session()->get('cart');
         // dd($cart);
+        $selectedGiftId = $request->input('selected_product');
+       
+        if (is_array($selectedGiftId) && count($selectedGiftId) > 0) {
+            $firstGiftId = $selectedGiftId[0]; // Lấy ID đầu tiên
+            // Xử lý với $firstGiftId, ví dụ: tìm kiếm sản phẩm
+            $selectedGift = ProductType::find($firstGiftId); // Giả sử bạn có model Gift
+        }   
+     /*    dd($selectedGiftId);  */
         if (!is_array($cart)) {
             $cart = [];
         }
@@ -41,10 +51,10 @@ class CheckoutController extends Controller
         foreach ($products as $product) {
             $product->quantity = $cart[$product->id]['quantity'];
         }
-        return view('pages.checkout', compact('products'));
+        return view('pages.checkout', compact('products','selectedGift'));
     }
     public function completeCheckout(Request $request)
-    {
+    {dd($request->all());
         // Lấy dữ liệu giỏ hàng từ session
         $cart = session()->get('cart');
         // dd($cart);
@@ -91,9 +101,25 @@ class CheckoutController extends Controller
             $orderDetail->quantity = $item['quantity']; // Lấy quantity từ giỏ hàng
             $orderDetail->price = $item['price']; // Lấy price từ giỏ hàng
             $orderDetail->total_price = $item['price'] * $item['quantity']; // Tính total_price
+             $order->selected_gift = json_encode($selectedGiftId);
             $orderDetail->save();
         }
-
+        $selectedGiftIds = $request->input('selected_product');
+        if (!empty($selectedGiftIds) && is_array($selectedGiftIds)) {
+            foreach ($selectedGiftIds as $selectedGiftId) {
+                $giftProduct = Product::find($selectedGiftId);
+                if ($giftProduct) {
+                    $productInGift = new ProductInGift(); // Mô hình ProductInGift đã được tạo
+                    $productInGift->order_id = $order->id; // Giả sử bạn đã có order_id
+                    $productInGift->product_id = $giftProduct->id; // ID của sản phẩm quà tặng
+                    $productInGift->gift_id = $giftProduct->id; // Hoặc có thể là ID riêng của quà tặng
+                    $productInGift->quantity = 1;  // Số lượng quà tặng mặc định là 1
+                    $productInGift->price = 0; // Quà tặng có giá là 0
+                    $productInGift->save();
+                }
+            }
+        }
+      
         $mailInfo =  $order->email;     
         $mail = Mail::to($mailInfo)->send(new OrderMail($order));        
         session()->forget('cart');
