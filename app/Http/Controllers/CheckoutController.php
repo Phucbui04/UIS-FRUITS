@@ -36,7 +36,7 @@ class CheckoutController extends Controller
         $cart = session()->get('cart');
         // dd($cart);
         $selectedGiftId = $request->input('selected_product');
-       
+        $selectedGift = null;
         if (is_array($selectedGiftId) && count($selectedGiftId) > 0) {
             $firstGiftId = $selectedGiftId[0]; // Lấy ID đầu tiên
             // Xử lý với $firstGiftId, ví dụ: tìm kiếm sản phẩm

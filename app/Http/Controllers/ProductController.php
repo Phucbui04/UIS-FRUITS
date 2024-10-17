@@ -24,4 +24,7 @@ class ProductController extends Controller
         $sku = 'I' . str_pad($product_detail->id, 5, '0', STR_PAD_LEFT);
         return view('pages.productDetail', compact('product_detail', 'sku'));
     }
+
+
+   
 }

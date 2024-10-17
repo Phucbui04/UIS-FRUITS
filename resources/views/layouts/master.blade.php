@@ -38,7 +38,7 @@
     <div class="offcanvas offcanvas-start" id="offcanvas-menu">
         <div class="offcanvas-header">
             <div class="offcanvas-title">
-                <a href="#" class="text-decoration-none">
+                <a href="{{route('home.index')}}" class="text-decoration-none">
                     <h2 class="m-0">UIS <span>Fruits</span></h2>
                 </a>
             </div>
@@ -46,9 +46,9 @@
         </div>
         <div class="offcanvas-body">
             <ul class="menu-offcanvas list-unstyled">
-                <li class="nav-item"><a href="#">Trang chủ</a></li>
+                <li class="nav-item"><a href="{{route('home.index')}}">Trang chủ</a></li>
                 <li class="nav-item"><a href="#">Giới thiệu</a></li>
-                <li class="nav-item"><a href="#">Sản phẩm</a></li>
+                <li class="nav-item"><a href="{{route('product.index')}}">Sản phẩm</a></li>
                 <li class="nav-item"><a href="#">Tin tức</a></li>
                 <li class="nav-item"><a href="#">Liên hệ</a></li>
             </ul>
@@ -91,14 +91,14 @@
             });
         });
     </script>
-
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="{{ asset('layouts/js/main.js') }}"></script>
     <!-- Slick Slider JS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-
+   
 </body>
 
 </html>
