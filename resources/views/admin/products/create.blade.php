@@ -15,10 +15,10 @@
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Tên sản phẩm</label>
-                                    <input type="text" name="product_name" required class="form-control">
+                                    <input type="text" name="name" required class="form-control">
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="category">Danh mục</label>
@@ -30,33 +30,33 @@
                                     </select>
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label>Số lượng</label>
-                                    <input type="number" name="quantity" required class="form-control" min="0">
+                                    <input type="number" name="stock" required class="form-control" min="0">
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Giá</label>
+                                    <label>Giá cũ</label>
                                     <input type="number" name="price" required class="form-control" min="0" step="0.01">
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label>Giảm giá</label>
+                                    <label>Giá mới</label>
                                     <input type="number" name="discount" class="form-control" min="0" step="0.01">
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label>Ảnh con</label>
-                                    <input type="file" name="child_images[]" class="form-control" multiple required>
-                                    <small class="form-text text-muted">Chọn ít nhất 3 ảnh (Ctrl + Click để chọn nhiều)</small>
+                                    <label>Ảnh con (chọn đúng 3 ảnh)</label>
+                                    <input type="file" name="child_images[]" class="form-control" id="childImages" multiple required>
+                                    <small class="form-text text-muted">Chọn 3 ảnh (Ctrl + Click để chọn nhiều)</small>
                                     @if ($errors->has('child_images'))
                                         <div class="alert alert-danger">
                                             {{ $errors->first('child_images') }}
@@ -64,14 +64,14 @@
                                     @endif
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Mô tả</label>
-                                    <textarea name="description" id="description" class="form-control"  style="height: 300px;"></textarea>
+                                    <textarea name="description" id="description" class="form-control" style="height: 300px;"></textarea>
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-12">
                                 <div class="form-group text-center">
                                     <label>Ảnh sản phẩm chính</label>
@@ -84,7 +84,7 @@
                                     </div>
                                 </div>
                             </div>
-            
+
                             <div class="col-lg-12 text-center">
                                 <button type="submit" class="btn btn-submit me-2">Đồng ý</button>
                                 <a href="{{ route('admin.products.index') }}" class="btn btn-cancel">Hủy</a>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </form>
-            
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.3/tinymce.min.js"></script>
     <script>
         tinymce.init({
@@ -106,6 +106,13 @@
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name'
         });
+
+        document.getElementById('childImages').addEventListener('change', function() {
+            if (this.files.length !== 3) {
+                alert('Vui lòng chọn đúng 3 ảnh.');
+                this.value = '';
+            }
+        });
     </script>
-    
+
 @endsection

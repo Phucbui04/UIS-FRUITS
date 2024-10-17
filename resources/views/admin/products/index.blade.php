@@ -8,9 +8,8 @@
                     <h6>Quản lý sản phẩm của bạn</h6>
                 </div>
                 <div class="page-btn">
-                    <a href="{{route('admin.products.create')}}" class="btn btn-added"><img src="{{ asset('assets/img/icons/plus.svg') }}"
-
-                            alt="img" class="me-1">Thêm sản phẩm</a>
+                    <a href="{{ route('admin.products.create') }}" class="btn btn-added"><img
+                            src="{{ asset('assets/img/icons/plus.svg') }}" alt="img" class="me-1">Thêm sản phẩm</a>
                 </div>
             </div>
 
@@ -127,40 +126,52 @@
                             </thead>
                             <tbody>
                                 @foreach ($products as $item)
-                                <tr>
-                                    <td>
-                                        <label class="checkboxs">
-                                            <input type="checkbox">
-                                            <span class="checkmarks"></span>
-                                        </label>
-                                    </td>
-                                    <td>{{$item->id}}</td>
-                                    <td class="productimgname">
-                                        <a href="javascript:void(0);" class="product-img">
-                                            <img src="{{ asset('assets/img/product/product1.jpg') }}" alt="product">
-                                        </a>
-                                        <a href="javascript:void(0);">{{$item->name}}</a>
-                                    </td>
-                                    
-                                    <td>{{$item->category_id}}</td>
-                                    <td>{{$item->price}}</td>
-                                    <td>{{$item->stock}}</td>
-                                   
-                                    <td>
-                                        <a class="me-3" href="product-details.html">
-                                            <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
-                                        </a>
-                                        <a class="me-3" href="{{ route('admin.products.edit', $item->id) }}">
-                                            <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
-                                        </a>
-                                        <a class="confirm-text" href="javascript:void(0);">
-                                            <img src="{{ asset('assets/img/icons/delete.svg') }}" alt="img">
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="checkboxs">
+                                                <input type="checkbox">
+                                                <span class="checkmarks"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{ $item->id }}</td>
+                                        <td class="productimgname">
+                                            <a href="javascript:void(0);" class="product-img">
+                                                <img src="{{ asset('assets/img/product/product1.jpg') }}" alt="product">
+                                            </a>
+                                            <a href="javascript:void(0);">{{ $item->name }}</a>
+                                        </td>
+
+                                        <td>{{ $item->category_id }}</td>
+                                        <td>{{ $item->price }}</td>
+                                        <td>{{ $item->stock }}</td>
+
+                                        <td>
+                                            <a class="action-link me-3" href="product-details.html">
+                                                <img src="{{ asset('assets/img/icons/eye.svg') }}" alt="img">
+                                            </a>
+                                            <a class="action-link me-3"
+                                                href="{{ route('admin.products.edit', $item->id) }}">
+                                                <img src="{{ asset('assets/img/icons/edit.svg') }}" alt="img">
+                                            </a>
+                                            <form class="action-link me-3" id="delete-form-{{ $item->id }}"
+                                                action="{{ route('admin.users.destroy', $item->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn "
+                                                    onclick="confirmDelete({{ $item->id }})"
+                                                    style="display: flex; align-items: center;">
+                                                    <img src="{{ asset('assets/img/icons/delete.svg') }}">
+                                                </button>
+                                            </form>
+
+                                            
+
+                                        </td>
+                                    </tr>
                                 @endforeach
-                               
-                              
+
+
                             </tbody>
                         </table>
                     </div>
