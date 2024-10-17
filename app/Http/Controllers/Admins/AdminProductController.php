@@ -31,32 +31,42 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
+ 
+    /*     dd( $request->all()); */
         $request->validate([
-            'product_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'category_id' => 'required|integer',
-            'quantity' => 'required|integer|min:0',
             'price' => 'required|numeric|min:0',
             'discount' => 'nullable|numeric|min:0',
+            'stock' => 'required|integer|min:0',
             'description' => 'required|string',
-            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'child_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Xác thực cho từng ảnh
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+           'child_images' => 'required|array|size:3', // Kiểm tra chính xác 3 ảnh
+            'child_images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
         ]);
-    
+ 
         // Lưu ảnh sản phẩm chính
+        $productImage = null; // Khởi tạo biến này
+
         if ($request->hasFile('product_image')) {
             $productImage = $request->file('product_image')->store( 'upload','public');
         }
     
         // Lưu sản phẩm vào DB và lấy ID
-        $product = Product::create([
-            'name' => $request->product_name,
-            'category_id' => $request->category_id,
-            'stock' => $request->quantity,
-            'price' => $request->price,
-            'discount' => $request->discount,
-            'description' => $request->description,
-            'image' => $productImage,
-        ]);
+        try {
+            $product = Product::create([
+                'name' => $request->name,
+                'category_id' => $request->category_id,
+                'price' => $request->price,
+                'discount' => $request->discount,
+                'stock' => $request->stock,
+                'description' => $request->description,
+                'image' => $productImage,
+            ]);
+        } catch (\Exception $e) {
+            dd($e->getMessage()); // Kiểm tra thông báo lỗi
+        }
+       
     
         // Lưu ảnh con
         if ($request->hasFile('child_images')) {

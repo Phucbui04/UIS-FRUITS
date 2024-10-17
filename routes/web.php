@@ -70,6 +70,8 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function () {
         'update' => 'admin.categories.update',
         'destroy' => 'admin.categories.destroy',
     ]);
+
+    Route::post('/users/toggle-status', [AdminUserController::class, 'toggleStatus'])->name('users.toggleStatus');
     Route::resource('users', AdminUserController::class)->names([
         'index' => 'admin.users.index',
         'create' => 'admin.users.create',

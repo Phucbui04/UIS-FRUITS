@@ -22,7 +22,8 @@ class User extends Authenticatable
         'password',
         'phone',
         'address',
-        'role'
+        'role',
+         'status'
     ];
     public function giftWrappings()
     {

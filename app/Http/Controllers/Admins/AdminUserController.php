@@ -13,7 +13,10 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $user = User::orderBy('id', 'desc')->get();
+        $user = User::where('role', '!=', 1) 
+        ->orderBy('id', 'desc')
+        ->get();
+
         return view('admin.users.index',compact('user'));
     }
 
@@ -44,10 +47,7 @@ class AdminUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -93,5 +93,18 @@ class AdminUserController extends Controller
         // Chuyển hướng về trang danh sách người dùng với thông báo thành công
         return redirect()->route('admin.users.index')->with('success', 'User đã được xóa thành công!');
     }
+
+    // UserController.php
+
+    public function toggleStatus(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->status = $request->status; // Cập nhật trạng thái
+        $user->save();
+
+        return response()->json(['success' => true]);
+    }
+    
+
     
 }
