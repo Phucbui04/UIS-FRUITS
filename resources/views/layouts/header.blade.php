@@ -45,9 +45,9 @@
              <div class="row align-items-center justify-content-between">
                  <!-- Logo -->
                  <div class="logo col-lg-2  col-5">
-                     <a href="#" class="text-decoration-none">
-                         <h2 class="m-0">UIS <span>Fruits</span></h2>
-                     </a>
+                    <a href="{{route('home.index')}}" class="text-decoration-none">
+                        <h2 class="m-0">UIS <span>Fruits</span></h2>
+                    </a>
                  </div>
 
                  <!-- Search Bar -->

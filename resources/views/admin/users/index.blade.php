@@ -151,45 +151,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMt23bF3n8zq5/Rc5NQ0Hnd9Hzft2YMePwP5w9" crossorigin="anonymous">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.toggle-status').click(function() {
-                var userId = $(this).data('id');
-                var currentStatus = $(this).data('status');
-                var newStatus = currentStatus == 0 ? 1 : 0; // Đổi trạng thái
-
-                $.ajax({
-                    url: '{{ route('users.toggleStatus') }}',
-                    type: 'POST',
-                    data: {
-                        id: userId,
-                        status: newStatus,
-                        _token: '{{ csrf_token() }}' // CSRF token
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            // Cập nhật giao diện
-                            $(`button[data-id='${userId}']`).data('status', newStatus);
-                            $(`button[data-id='${userId}']`).find('i').attr('class', `fa-solid ${newStatus == 0 ? 'fa-lock' : 'fa-unlock'}`);
-                            
-                            // Cập nhật màu chữ của nút
-                            $(`button[data-id='${userId}']`).css('color', newStatus == 0 ? 'red' : 'green'); // Cập nhật màu chữ
-                            $(`button[data-id='${userId}']`).find('i').attr('class', `fa-solid ${newStatus == 0 ? 'fa-lock' : 'fa-unlock'}`);
-                            $(`tr:has(button[data-id='${userId}']) .status`).text(newStatus == 0 ? 'Hoạt động' : 'Bị khóa');
-                            
-                            // Cập nhật lớp cho nút
-                            $(`button[data-id='${userId}']`).removeClass(newStatus == 0 ? 'btn-success' : 'btn-danger').addClass(newStatus == 0 ? 'btn-danger' : 'btn-success');
-                        } else {
-                            alert('Có lỗi xảy ra, vui lòng thử lại.');
-                        }
-                    }
-                });
+            // Khi nhấn nút "Xóa tất cả", hiển thị form xóa giỏ hàng
+            $('#clearCart').on('click', function() {
+                $('#clear-cart-form').show();
             });
         });
-
-        function confirmDelete(id) {
-            if (confirm("Bạn có chắc chắn muốn xóa tài khoản này không?")) {
-                document.getElementById('delete-form-' + id).submit();
+    
+        function confirmClearCart() {
+            // Hiển thị hộp thoại xác nhận
+            if (confirm("Bạn có chắc chắn muốn xóa tất cả sản phẩm trong giỏ hàng không? Hành động này không thể hoàn tác.")) {
+                // Gửi form để xóa giỏ hàng
+                document.getElementById('clear-cart-form').submit();
+            } else {
+                // Thông báo khi người dùng chọn không xóa
+                alert("Giỏ hàng không bị xóa.");
             }
         }
     </script>

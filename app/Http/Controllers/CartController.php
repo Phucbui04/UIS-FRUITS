@@ -38,7 +38,7 @@ class CartController extends Controller
     
         Session::put('cart', $cart);
     
-        return redirect()->route('cart.index')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng');
+        return redirect()->route('home.index')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng');
     }
 
     // Cập nhật số lượng giỏ hàng
